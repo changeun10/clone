@@ -1,0 +1,47 @@
+@charset "UTF-8";
+
+html {
+	background: #80808096;
+	height: 100%;
+}
+
+body {
+	background: white;
+	padding: 50px;
+	height: 85%;
+}
+
+header {
+	text-align: center;
+}
+
+div {
+	position: relative;
+	width: 500px;
+	left: 50%;
+	transform: translateX(-50%);
+	padding: 10px;
+}
+
+.title {
+	width: 500px;
+}
+
+.name {
+	width: 250px;
+}
+
+#back_page {
+	padding: 2px 30px;
+	border: 3px solid #80808075;
+}
+
+.add_button {
+	position: relative;
+	color: white;
+	border: 0;
+	background: #30bbf4;
+	left: 180px;
+	width: 100px;
+	height: 30px;
+}
