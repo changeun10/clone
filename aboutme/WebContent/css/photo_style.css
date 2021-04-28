@@ -1,0 +1,55 @@
+@charset "utf-8";
+
+header {
+    background-color: white;
+    margin: 10px 0px 20px 0px;
+    padding: 20px;
+}
+
+body {
+    background-color: rgba(79, 79, 80, 0.671);
+    margin: 30px;
+    clear: right;
+}
+
+div {
+    background-color: white;
+    padding: 20px;
+    clear: right;
+}
+
+#nav_header {
+    text-align: right
+}
+
+.buttons {
+    background-color: #5a9fd5;
+    border: none;
+    color: #7532cd;
+    padding: 5px 40px;
+    text-align: center;
+    font-size: 16px;
+    margin: 10px 10px;
+    box-shadow: 2px 2px 2px 2px gray;
+    cursor: pointer;
+}
+
+footer {
+    clear: both;
+    text-align: center;
+    padding: 20px 0px;
+    color: gray;
+    margin: 20px 0px;
+    background-color: white;
+}
+
+img {
+    width: 200px;
+    vertical-align: text-top;
+    border-style: solid;
+    margin-right: 100px;
+}
+
+.block {
+    margin: 10px 100px;
+}
