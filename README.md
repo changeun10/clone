@@ -2,7 +2,7 @@
 
 <h1>HTML<br>Java Annotation<br> 자바스크립트 변수키워드(let,var,const)<br></h1>
 
-###HTTP
+### HTTP
 HTTP(Hypertext Transfer Protocol)이다. 한국어로 변역하자면 다른사람과 정보를 주고받기 위한 규약정도로 생각하면 좋을 것같다.<br>
 사람들끼리도 말이 통해야 의사소통이 되듯이 컴퓨터도 일정 규약을 해놓고 그위에서 돌아가야지 우리의 요청을 알아들 수 있다.<br>
 데이터는 인터넷상에서 서버와 클라이언트가 주고 받는다.
