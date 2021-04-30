@@ -11,8 +11,28 @@ HTTP(Hypertext Transfer Protocol)이다. 한국어로 변역하자면 다른사�
 서버와 클라이언트가 데이터를 주고받는데 클라이언트가 서버에게 데이터를 요청하고 서버가 데이터를 보내주면 서버는 그다음에 관심을 끊어버린다. 그렇기 때문에 서버는 그전에 어떤 요청이 오고갔는지 알 수 없다.<br>이렇게 연결을 끊으면 장점과 단점이 생긴다. <br>
 장점은 연결을 끊기 때문에 보다 많은 컴퓨터들과 연결이 가능하다.<br>
 그러나 이전 상태를 알지 못하기 때문에 정보를 유지하기 위해 Cookie 같은 기술이 나왔다.<br>
-우리가 검색기록삭제에 들어가보면 쿠키 삭제를 볼 수 있는데 그때의 그 쿠키이다.
-![http_-_](https://user-images.githubusercontent.com/77154341/116717123-85c03980-aa13-11eb-90e7-663301bf209a.png)
+우리가 검색기록삭제에 들어가보면 쿠키 삭제를 볼 수 있는데 그때의 그 쿠키이다.<br>
+
+<h5>http method</h5>
+클라이언트가 서버로 요청을 보낼때 어떤 요청을 할 것인지 method를 정해서 보내게 된다<br>
+여기서 method의 종류는 get,put,post,push,options등이 있다.<br>
+GET : 정보를 요청하기 위해서 사용한다. (SELECT)<br>
+POST : 정보를 밀어넣기 위해서 사용한다. (INSERT)<br>
+PUT : 정보를 업데이트하기 위해서 사용한다. (UPDATE)<br>
+DELETE : 정보를 삭제하기 위해서 사용한다. (DELETE)<br>
+HEAD : (HTTP)헤더 정보만 요청한다. 해당 자원이 존재하는지 혹은 서버에 문제가 없는지를 확인하기 위해서 사용한다.<br>
+OPTIONS : 웹서버가 지원하는 메서드의 종류를 요청한다.<br>
+TRACE : 클라이언트의 요청을 그대로 반환한다. 예컨데 echo 서비스로 서버 상태를 확인하기 위한 목적으로 주로 사용한다.<br>
+
+#### HTTP(S)
+
+그렇다면 HTTP에 S가 붙은 https는 뭘까?? 우리가 현재 사용하는 대부분의 페이지를 보면 http가 아닌 https로 시작하는 것을 볼 수 있다. S는 Secure을 의미한다. HTTP에서 보안이 강화 되었다고 보면 된다.<BR>
+HTTPS는 소켓 통신에서 일반 텍스트를 이용하는 대신에 SSL이나 TLS 프로토콜을 통해 세션 데이터를 암호화한다.
+<BR>
+
+<img src="https://www.boostcourse.org/web316/lecture/254256/?isDesc=false#">
+
+
 
 <h3>Annotation</h3>
 어노테이션은 JEE5(Java Platform, Enterprise Edition 5)부터 새롭게 추가된 요소이다.<br>
