@@ -12,7 +12,7 @@ HTTP(Hypertext Transfer Protocol)이다. 한국어로 변역하자면 다른사�
 장점은 연결을 끊기 때문에 보다 많은 컴퓨터들과 연결이 가능하다.<br>
 그러나 이전 상태를 알지 못하기 때문에 정보를 유지하기 위해 Cookie 같은 기술이 나왔다.<br>
 우리가 검색기록삭제에 들어가보면 쿠키 삭제를 볼 수 있는데 그때의 그 쿠키이다.
-<img src="https://cphinf.pstatic.net/mooc/20180119_25/1516354290022wUY3x_PNG/http_-_.PNG">
+![http_-_](https://user-images.githubusercontent.com/77154341/116717123-85c03980-aa13-11eb-90e7-663301bf209a.png)
 
 <h3>Annotation</h3>
 어노테이션은 JEE5(Java Platform, Enterprise Edition 5)부터 새롭게 추가된 요소이다.<br>
