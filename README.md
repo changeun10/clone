@@ -30,7 +30,7 @@ TRACE : 클라이언트의 요청을 그대로 반환한다. 예컨데 echo 서�
 HTTPS는 소켓 통신에서 일반 텍스트를 이용하는 대신에 SSL이나 TLS 프로토콜을 통해 세션 데이터를 암호화한다.
 <BR>
 
-<img src="https://www.boostcourse.org/web316/lecture/254256/?isDesc=false#">
+<img src="https://www.ui4u.go.kr/depart/img/content/sub03/img_con03030100_01.jpg">
 
 
 
