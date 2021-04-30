@@ -1,6 +1,18 @@
 # 이곳은 제가 수행한 프로젝트를 복사해 두는 저장소입니다! + 나의 공부한것 저장
 
-<h1>04.20 Java Annotation 자바스크립트 변수키워드(let,var,const)</h1>
+<h1>HTML<br>Java Annotation<br> 자바스크립트 변수키워드(let,var,const)<br></h1>
+
+<h3>HTTP<br></h3>
+HTTP(Hypertext Transfer Protocol)이다. 한국어로 변역하자면 다른사람과 정보를 주고받기 위한 규약정도로 생각하면 좋을 것같다.<br>
+사람들끼리도 말이 통해야 의사소통이 되듯이 컴퓨터도 일정 규약을 해놓고 그위에서 돌아가야지 우리의 요청을 알아들 수 있다.<br>
+데이터는 인터넷상에서 서버와 클라이언트가 주고 받는다.
+  
+<h5>http 작동방식</h5>
+서버와 클라이언트가 데이터를 주고받는데 클라이언트가 서버에게 데이터를 요청하고 서버가 데이터를 보내주면 서버는 그다음에 관심을 끊어버린다. 그렇기 때문에 서버는 그전에 어떤 요청이 오고갔는지 알 수 없다.<br>이렇게 연결을 끊으면 장점과 단점이 생긴다. <br>
+장점은 연결을 끊기 때문에 보다 많은 컴퓨터들과 연결이 가능하다.<br>
+그러나 이전 상태를 알지 못하기 때문에 정보를 유지하기 위해 Cookie 같은 기술이 나왔다.<br>
+우리가 검색기록삭제에 들어가보면 쿠키 삭제를 볼 수 있는데 그때의 그 쿠키이다.
+<img src="https://www.boostcourse.org/viewer/image?src=https%3A%2F%2Fcphinf.pstatic.net%2Fmooc%2F20180119_25%2F1516354290022wUY3x_PNG%2Fhttp_-_.PNG">
 
 <h3>Annotation</h3>
 어노테이션은 JEE5(Java Platform, Enterprise Edition 5)부터 새롭게 추가된 요소이다.<br>
