@@ -12,7 +12,7 @@ HTTP(Hypertext Transfer Protocol)이다. 한국어로 변역하자면 다른사�
 장점은 연결을 끊기 때문에 보다 많은 컴퓨터들과 연결이 가능하다.<br>
 그러나 이전 상태를 알지 못하기 때문에 정보를 유지하기 위해 Cookie 같은 기술이 나왔다.<br>
 우리가 검색기록삭제에 들어가보면 쿠키 삭제를 볼 수 있는데 그때의 그 쿠키이다.<br>
-
+<img src="https://gmlwjd9405.github.io/images/network/http-network-connect.png">
 <h5>http method</h5>
 클라이언트가 서버로 요청을 보낼때 어떤 요청을 할 것인지 method를 정해서 보내게 된다<br>
 여기서 method의 종류는 get,put,post,push,options등이 있다.<br>
@@ -30,7 +30,7 @@ TRACE : 클라이언트의 요청을 그대로 반환한다. 예컨데 echo 서�
 HTTPS는 소켓 통신에서 일반 텍스트를 이용하는 대신에 SSL이나 TLS 프로토콜을 통해 세션 데이터를 암호화한다.
 <BR>
 
-<img src="https://www.ui4u.go.kr/depart/img/content/sub03/img_con03030100_01.jpg">
+<img src="https://www.html5rocks.com/en/tutorials/internals/howbrowserswork/">
 
 
 
