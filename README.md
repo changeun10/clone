@@ -1,7 +1,5 @@
 # 이곳은 제가 수행한 프로젝트를 복사해 두는 저장소입니다! + 나의 공부한것 저장
 
-<h1>HTML<br>Java Annotation<br> 자바스크립트 변수키워드(let,var,const)<br></h1>
-
 ### HTTP
 HTTP(Hypertext Transfer Protocol)이다. 한국어로 변역하자면 다른사람과 정보를 주고받기 위한 규약정도로 생각하면 좋을 것같다.<br>
 사람들끼리도 말이 통해야 의사소통이 되듯이 컴퓨터도 일정 규약을 해놓고 그위에서 돌아가야지 우리의 요청을 알아들 수 있다.<br>
@@ -30,7 +28,42 @@ TRACE : 클라이언트의 요청을 그대로 반환한다. 예컨데 echo 서�
 HTTPS는 소켓 통신에서 일반 텍스트를 이용하는 대신에 SSL이나 TLS 프로토콜을 통해 세션 데이터를 암호화한다.
 <BR>
 
+### How browers work
 <img src="https://www.html5rocks.com/en/tutorials/internals/howbrowserswork/webkitflow.png">
+
+ css을 파싱한 style rules 를 html을 파싱한 DOM TREE에 Attachment 를 시켜서 rendering Tree 를 만든다. 그다음 해석을 한다음에 사용자 모니터에 보여준다.
+
+## WEB Server
+
+웹 서버란?
+웹 서버는 소프트웨어(Software)를 보통 말하지만, 보통은 웹 서버 소프트웨어가 동작하는 컴퓨터를 말한ㄷ
+웹 서버의 가장 중요한 기능은 클라이언트(Client)(web brower)가 요청하는 HTML 문서나 각종 리소스(Resource)를 전달하는 것 (없거나 에러 발생시 에러메세지를 보낸다 ex.404)
+웹 브라우저나 웹 크롤러가 요청하는 리소스는 컴퓨터에 저장된 정적(static)인 데이터이거나 동적인 결과가 될 수 있다.
+
+웹 브라우저와 웹서버는 http 를 통해 통신을 한다. url이 http로 시작하는 이유
+
+웹 서버 소프트웨어의 종류
+
+가장 많이 사용하는 웹 서버는 Apache, Nginx, Microsoft IIS
+Apache웹 서버는 Apache Software Foundation에서 개발한 웹서버로 오픈소스 소프트웨어(Open-source Software)이며, 거의 대부분 운영체제에서 설치 및 사용을 할 수 있다.
+Nginx는 차세대 웹서버로 불리며 더 적은 자원으로 더 빠르게 데이터를 서비스하는 것을 목적으로 만들어진 서버이며 Apache웹 서버와 마찬가지로 오픈소스 소프트웨어이다.
+
+### WAS(Web Application Server)
+
+클라이언트/서버
+클라이언트는 서비스를 서버에게 정보를 요청하여 응답을 받아 결과를 사용자에게 보여준다. 서버는 클라이언트로 부터 정보 요청을 받고 가지고 있는 정보를 보내준다. (ex. web brower - web server)
+
+DBMS(database management system)
+다수의 사용자가 데이터베이스 내의 데이터에 접근할 수 있도록 해주는 소프트웨어
+보통 서버형태로 서비스를 제공한다.
+클라이언트 프로그램이 한때 유행했는데 이러한 프로그램의 문제점은 업데이트가 되면 항상 모든 파일을 배포 해야한다는 문제점이 있었다. 클라이언트 프로그램이 커져서 클라이언트 컴퓨터에 무리가 되는 문제점도있다.<br>
+보안이 나쁘다
+
+미들웨어
+
+
+
+
 
 
 
