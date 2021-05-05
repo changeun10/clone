@@ -81,7 +81,39 @@ WAS도 보통 자체적으로 웹 서버 기능을 내장하고 있다.<br>
 (was가 문제가 생기면 웹서버에서 중간에 client가 was에 접근을 못하도록 막고 was를 종료한다 그렇게 되면 client는 was가 종료된지 모르고 끊기지않고 잘 사용할 수 있게 되는것이다.)<br>
 
 
+### 서블릿
+## 자바 웹 어플리케이션의 폴더구조
+![1_5_1_____](https://user-images.githubusercontent.com/77154341/117157177-56397480-adf9-11eb-8a4f-ce541f4f432b.png)
 
+# 서블릿이란?
+자바 웹 어플리케이션의 구성요소 중 동적인 처리를 하는 프로그램의 역할입니다.<br>
+서블릿을 정의해보면 서블릿(servlet)은 WAS에 동작하는 JAVA 클래스 <br>
+서블릿은 HttpServlet 클래스를 상속받는다.<br>
+서블릿과 JSP로부터 최상의 결과를 얻으려면, 웹 페이지를 개발할 때 이 두 가지(JSP, 서블릿)를 조화롭게 사용해야 한다.<br>
+(웹 페이지를 구성하는 화면(HTML)은 JSP로 표현하고, 복잡한 프로그래밍은 서블릿으로 구현)<br>
+
+# 서블릿 설정 방법
+servlet 3.0 이상에서는 자바 어노태이션을 사용한다.<br>
+3.0미만에서는 web.xml에 서블릿 url 을 등록하여 사용한다.<br>
+
+
+![1_5_3_ServletLifcycle](https://user-images.githubusercontent.com/77154341/117157891-f1324e80-adf9-11eb-8986-e4ddc9577229.png)
+# Servlet 생명주기
+WAS는 서블릿 요청을 받으면 해당 서블릿이 메모리에 있는지 확인한다.<br>
+ if (메모리에 없음) {<br>
+ - 해당 서블릿 클래스를 메모리에 올림<br>
+ - init() 메소드를 실행<br>
+}<br>
+ - service()메소드를 실행<br>
+was가 종료되거나, 웹 어플리케이션이 새롭게 갱신될 경우 destroy() 메소드가 실행<br>
+<br>
+그럼 doGet, doPost는 언제 실행 되는걸까?<br>
+# service(request, response) 메소드<br>
+HttpServlet의 service메소드는 템플릿 메소드 패턴으로 구현합니다.<br>
+(service메소드를 가지고 있지않다면 부모class의 service메소드를 실행)
+-클라이언트의 요청이 GET일 경우에는 자신이 가지고 있는 doGet(request, response)메소드를 호출<br>
+-클라이언트의 요청이 Post일 경우에는 자신이 가지고 있는 doPost(request, response)를 호출<br>
+ 
 <h3>Annotation</h3>
 어노테이션은 JEE5(Java Platform, Enterprise Edition 5)부터 새롭게 추가된 요소이다.<br>
 일단 어노테이션의 용도는 다양한 목적이 있지만 메타 데이터의 비중이 가장 크다 할 수 있다.<br>
