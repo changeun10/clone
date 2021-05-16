@@ -70,5 +70,32 @@ TCP를 사용한다. (integreity가 중요)<br>
 stateless이다.(response를 보내면 server는 connection을 끊는다)<br>
 그래서 10개의 object를 받을려면 10번의 연결이 필요하게된다(되게 비효율적)<br>
 
+### Persistent http vs NON-Persistent http<br>
+앞에서 소개한 non-persistent http같은 경우 10개의 object를 받기위해서는 10번의 연결을 해야한다.<br>
+하나의 message가 왔다갔다 하는 시간을 1 RTT라고 한다면 5개의 object를 받기위해서는 처음 연결을 위한 <br>
+1RTT, 첫 message를 위해 1RTT 그다음에 5개가 필요하다는 것을 알 수 있다. 그럼 이제 2RTT만큼 5번을 반복해야한다<br>
+총 12RTT가 필요한 셈이다. 매우 비효율적임을 알 수 있다.<br>
+여기서 개선된 기능을 하는 연결이 parallel tcp connection이다. 처음 연결을 하고 나서 몇개의 object가 필요한지 파악한다음 한번 연결한뒤 한번에 모든 object에 대한 요구를 한다. 그렇게 되면 계속 연결을 맺었다 끊었다 할필요가 없기 때문에 속도에 향상을 기대할 수 있다. <br>
+그러나 이렇게 하면 하나의 process에 여러개의 socket을 만들어야 하고 그렇게 되면 메모리에 부하가 걸리게된다. <br>
+<br>
+persistent http같은 경우 connection을 끊지 않는다. 그래서 매번 object를 위해 새로운 connect을 맺을필요가 없다. 앞선 예시에서 5개의 object가 필요한 경우 처음 connection을 위한 1RTT , 첫 message를 위해 1RTT<br>
+5개의 object하나당 1RTT만 필요하다 NON CONNECTION과 비교해보면 거의 1/2수준임을 알 수 있다.<br>
+
+### HTTP request message<br>
+http request message에는 무슨 내용이 들어있을까?<br>
+![ga](https://user-images.githubusercontent.com/77154341/118403011-6bd75580-b6a7-11eb-8c41-fed9933c876c.PNG)<br>
+method에는 get,post 등이 들어갈 수 있다.<br>
+get method같은 경우 단순 데이터를 조회할때 사용한다 그리고 parameter을 url 에 ?뒤에 넣어서 보낸다<br>
+post method같은 경우 entity body 에 parameter를 넣어 message를 전송한다.보통 input값에 따라 데이터를 조회할때 사용한다 <br>
+![gdg](https://user-images.githubusercontent.com/77154341/118403109-d5effa80-b6a7-11eb-9758-bf3e4276cf89.PNG)<br>
+response message는 이렇게 생겼고 status codes는 여러가지가있다 보통 200번대는 성공을 말하고 400번대는 잘못된 연결을 말한다 <br>
+200 OK<br>
+301 Moved permanently<br>
+400 bad request<br>
+404 not found<br>
+505 http version not supported
+
+
+
 
 
