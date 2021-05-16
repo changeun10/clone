@@ -1,6 +1,6 @@
 ### Application layer<br>
 <br>
-## Client - server architecture<br>
+##  Client - server architecture<br>
 Server:<br>
 always - on host<br>
 permanent IP address<br>
