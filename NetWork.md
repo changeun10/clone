@@ -1,17 +1,17 @@
 ### Application layer<br>
-<br>
+
 ##  Client - server architecture<br>
 Server:<br>
 always - on host<br>
 permanent IP address<br>
 data centers for scaling<br>
-<br>
+
 Clients:<br>
 communicate with server<br>
 do not communciate directly with each other<br>
 may be intermittently connected<br>
 may have dynamic IP addresses<br>
-<br>
+
 ## P2P architecture (서벙 없이 컴퓨들 끼리 communicate)<br>
 no always-on server<br>
 arbitary end systems directily communicate<br>
