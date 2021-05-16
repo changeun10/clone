@@ -16,10 +16,9 @@ may have dynamic IP addresses<br>
 no always-on server<br>
 arbitary end systems directily communicate<br>
 모든 컴퓨터 들은 서버이면서 클라이언트가 된다.<br>
-- self scalability<br>
+self scalability<br>
 complex management<br>
-<br>
-<br>
+
 ## Processes communicating<br>
 결국 통신하는 주체는 각 컴퓨터안에서 돌아가고 있는 processes 이다. <br>
 같은 호스트 내에서는 inter-process communicatin을 통해 서로 communicate를 하고<br>
