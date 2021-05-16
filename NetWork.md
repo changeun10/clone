@@ -12,7 +12,7 @@ do not communciate directly with each other<br>
 may be intermittently connected<br>
 may have dynamic IP addresses<br>
 
-## P2P architecture (서벙 없이 컴퓨들 끼리 communicate)<br>
+## P2P architecture (서버 없이 컴퓨들 끼리 communicate)<br>
 no always-on server<br>
 arbitary end systems directily communicate<br>
 모든 컴퓨터 들은 서버이면서 클라이언트가 된다.<br>
