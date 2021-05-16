@@ -1,4 +1,4 @@
-### Application layer<br>
+##### Application layer<br>
 
 ##  Client - server architecture<br>
 Server:<br>
@@ -27,3 +27,6 @@ complex management<br>
 client process와 server process로 나뉜다.<br>
 client process는 server process에게 요청을 보내 communication을 initiates한다.<br>
 server process는 contacted할려는 message를 기다린다. <br>
+
+
+## Sockets
