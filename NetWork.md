@@ -96,6 +96,52 @@ response message는 이렇게 생겼고 status codes는 여러가지가있다 �
 505 http version not supported
 
 
+## User-server state: cookies
+일단 http 프로토콜은 stateless이다 그렇기 때문에 object를 주고 받은 다음에는 그 connection이 유지되 지않는다.<br>
+그러면 자연스럽게 여러가지 불편한 점이 생기게 된다. 이를 보완하기 위해 나온 기술이 cookie<br>
+처음 client가 server에 접속하게 되면 server은 그 client를 위한 쿠키를 하나 만든다.<br>
+그리고 server에서는 client에 대한 data를 database에 저장을 하고 response message에 cookie정보를 넣어 client에게 보낸다. <br>
+그리고 다음에 client가 server에 접속할때 request message에 cookie정보를 넣어 보내면 server에서는 확인하고 database에서 해당 cookie에 맞는 data를 가지고 작업을 진행한다.<br>
+이런식으로 http protocol은 statless이지만 그 전의 정보를 기억 할 수 있게 된다.<br>
+client에서는 cookie file을 저장하는 공간이 있다. <br>
+
+## Web caches (proxy server)
+<img width="684" alt="98208971-86ef3d00-1f81-11eb-9ab4-52bca42463e1" src="https://user-images.githubusercontent.com/77154341/118427596-93aad580-b708-11eb-8888-12e43ebcf630.png"><br>
+client는 web에 접속할때 중간다리 역할인 proxy server에 요청을 하게 된다.<br>
+만약에 proxy server에 원하는 정보가 없다면 이제 origin server에 요청을 해서 client가 원하는 data를 받아오게 된다. <br>
+만약에 client가 요청한 자료가 이미 proxy server에 있다면 origin server를 거치지 않고 바로 client에게 보내준다. <br>
+이렇게 되면 origin server로 가는 flow의 양이 줄어든다. cost 감소.(response time이 줄어든다)<br>
+그러나 cache에도 단점이 있는데 proxy server에서 가지고 있는 데이터만 주게 된다면 최신 업데이트 된 자료가 아닌 옛날 자료를 주게 될 수도 있다.<br>
+그렇기 때문에 일정 주기안에 proxy server에 있는 데이터를 업데이트 할 필요가 있다.<br>
+
+## E-mail
+#### User Agent
+mail reader라고 불린다. 사용하는 우리들이다.<br>
+여기서는 composing, editing,reading등을 진행한다.<br>
+
+#### Mail Servers
+server에서 오가는 mail message를 보관한다.<br>
+mailbox와 message queue가 있다.<br>
+mailbox는 사용자마다 각각 가지고 있다. <br>
+![fsdfsd](https://user-images.githubusercontent.com/77154341/118428206-e8028500-b709-11eb-83be-6ef620f53aba.PNG)<br>
+#### mail protocol
+![image](https://user-images.githubusercontent.com/77154341/118428245-fa7cbe80-b709-11eb-977f-b81dbbae40cb.png)<br>
+어떻게 메일이 보내질까?<br>
+일단 보내고 싶은 사람이 받는 사람의 주소를 적어 메일을 보낸다. <br>
+그러면 보낸 사람이랑 연결 되어 있는 mail server에 있는 message queue에 메일이 들어가게 된다. <br>
+message queue에서 자신 메일이 보내질 차례가 된다면 받는 사람이랑 연결 되어있는 mail server에 있는 mail box에 보내지게 된다.<br>
+그다음에 받는 사람이 mail server에 접속하여 mail box에 있는 mail을 읽게된다.<br>
+
+#### SMTP protocol
+email도 web과 마찬가지로 tcp를 사용한다.(reliably transfer)내용의 정확성이 중요!<br>
+그렇기 때문에 연결을 위해 handshaking을 하고 message를 전달하고 close를 하게 된다.<br>
+http는 pull, smtp는 push이다.
+![image](https://user-images.githubusercontent.com/77154341/118429120-e8038480-b70b-11eb-8987-abb97079c6d1.png)
+
+
+
+
+
 
 
 
