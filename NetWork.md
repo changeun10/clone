@@ -138,6 +138,45 @@ email도 web과 마찬가지로 tcp를 사용한다.(reliably transfer)내용의
 http는 pull, smtp는 push이다.
 ![image](https://user-images.githubusercontent.com/77154341/118429120-e8038480-b70b-11eb-8987-abb97079c6d1.png)
 
+#### Mail access protocol
+SMTP는 보낸 사람의 메일이 받는사람의 메일서버까지 갈때 사용하는 protocol이다.<br>
+이때 받는 사람이 자신의 mail server에 접근하여 메일을 확인해야하는데 이때 사용하는 protocol이 POP,IMAP,HTTP가 있따. <br>
+- POP <br>
+list(메일 리스트),retr(내용읽어주기),dele(삭제),quit(종료)<br>
+먼저 mail server에서는 list를 보여주고 retr을 통해 내용을 보여준다 그리고 바로 dele를 하게된다.<br>
+그렇기때문에 client가 메일을 받게되면 mail server에서는 mail delete된다.<br>
+초창기 pop protocol 같은 경우에는 이와 같이 download and delete mode를 사용하였지만 download-and-keep시스템이 개발되었다. <br>
+그런데 이러한 시스템에도 문제점이 생겨 개선된 protocol이 IMAP이다. <br>
+IMAP 같은 경우에는 local에서 작업을 진행하지 않고 server상에서 작업을 진행한다. 정리도 가능하게 되었다. 그리고 mail도 지워지지 않고 계속 유지가 된다.<br>
+
+
+## DNS: domain name system
+우리가 인터넷을 사용할 때에는 www.naver.com이렇게 url을 사용해서 특정 사이트에 접속하게 된다.<br>
+그러나 인터넷의 주소는 이렇게 영어로 되어있지 않고 ip주소로 구성되어있다.<br>
+그렇기 때문에 우리가 요구하는 url주소와 ip주소를 매치(mapping)시켜주는 application이 필요한데 그게 바로 DNS이다.<br>
+#### DNS가 제공하는 services
+hostname을 ip address로 translation, host aliasing(별명), mail server, load distribution이 있다.<br>
+load distribution같은 경우는 웹이 인기가 많을 경우 여러개의 웹서버를 둘 수 있는데 들어오는 요구를 잘 분배해서 한곳에 몰리지 않도록 해준다.<br>
+
+#### 왜 DNS를 centralize 하지 않을까?
+항상 dns를 사용해야하는데 그러면 traffic volume이 너무 커져서 문제가 발생할수있다.<br>
+그리고 dns가 고장나버리면 모든 web이 동작하지 않기 때문에 risk가 너무크다.<br>
+
+#### DNS: a distributed, hierarchical database
+![image](https://user-images.githubusercontent.com/77154341/118445335-47bc5880-b729-11eb-8dcd-534afbac4446.png)
+
+Root DNS servers 밑에는 TLD servers가 있다. TLD에는 .com .org 처럼 기능으로 분류하기도 하고 국가별로 분류도 되어있다.(.kr, .jp ...)<br>
+그 아래에는 이제 우리가 원하는 주소들이 들어있다(authoritative).(www.naver.com)<br>
+
+#### Local DNS name server
+defalut name server, proxy등으로 불리기도 한다.<br>
+앞에 나온 cache와 비슷하다. 컴퓨터에서 url을 부르면 항상 local dns name server을 지나쳐간다.<br>
+cache와 비슷하게 이제 local dns에 우리가 원하는 mapping정보가 있다면 그것을 반환해주고 아니면 정보를 찾아 떠난다. <br>
+![image](https://user-images.githubusercontent.com/77154341/118445875-ed6fc780-b729-11eb-83a3-2c6081b1ccf6.png)
+위 그림은 정보를 찾아 떠나는 방법중 iterated query를 나타낸 것이다. 물어물어 답변이 오면 계속 local dns server가 처리를 한다. <br>
+![image](https://user-images.githubusercontent.com/77154341/118445970-1001e080-b72a-11eb-8db2-8f5c753b6d17.png)
+resolution같은 경우에는 물어서 그쪽에게 책임을 전가한다. <br>
+그리고 root server나 TLD server에서도 caching이 가능하다. 그렇기 때문에 중간에 root 나 TLD가 mapping정보를 가지고 있다면 끝까지 물을 필요 없이 바로 반환해 줄 수 있다.
 
 
 
