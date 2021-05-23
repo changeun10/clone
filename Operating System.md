@@ -155,9 +155,27 @@ bounded waiting: 어느 쓰레드라도 유한 시간 내 cpu를 만나야함<br
 세마포를 사용해서 ordering문제도 해결 가능하다. <br>
 ![image](https://user-images.githubusercontent.com/77154341/119251742-09b8ac00-bbe3-11eb-9447-859bcb30538e.png)<br>
 이렇게 되면 항상 P1이 먼저 실행된다. (value값은 0으로 설정)<br>
-      
 
+#### 전통적 동기화 예제
+- producer and Consumer problem
+- 공유 데이터베이스 접근
+- 식사하는 철학자 문제(교착상태)
 
+### 교착상태(deadlock)
+프로세스는 실행을 위해 여러 자원을 필요로 한다. 그런데 다른 프로세스가 이미 자원을 사용하고 있으면 그 프로세스는 대기를 해야한다.<br>
+그런데 그때 하나를 붙잡고 다른 하나의 자원을 기다리는 프로세스가 엉키게 되면 교착상태에 빠질 수 있다.<br>
+#### 교착상태 필요 조건
+– Mutual exclusion (상호배타) 
+– Hold and wait (보유 및 대기) 
+– No Preemption (비선점) 
+– Circular wait (환형대기)
 
+#### 교착상태 처리
+- 교착상태 방지
+교착상태 필요조건 중에 한가지를 불만족 시키게 하는 것이다. 
+ 
+- 교착상태 회피
+- 교착상태 검출 및 복구
+- 교착상태 무시
 
 
