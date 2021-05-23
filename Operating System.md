@@ -103,3 +103,62 @@ preemptive scheduling 방식으로 계속 작업중인 process가 변경된다(�
 만약에 time quantum 이 무한대가 된다면 FCFS랑 같은 방식이고 0으로 수렴하게 되면 prcessor sharing이 된다. context switching overhead가 굉장히 높아져서 비효율적이다)<br>
 적절한 time quantum을 정하는 것이 중요하다.<br>
 
+- Multilevel Queue Scheduling
+ready queue 를 한 줄이 아닌 여러줄로 나누어서 정리를 해둔다. 보통 비슷한 역할을 하는 프로세스끼리 묶어서 queue에 둔다. queue마다 우선순위가 다를 수 있고 각 queue 에서 사용하는 scheduling이 다를 수 있다. cpu time 을 차등 배분한다. <br>
+다른 queue로 이동시켜 프로세스를 진행할 수 있다. 기아상태가 우려된면 우선순위 높은 queue로 올린다.<br>
+
+#### 프로세스 생성과 종료
+프로세스는 프로세스에 의해 만들어진다. os가 실행되면서 최초의 프로세스가 자동으로 만들어진다.<br>
+모든 프로세스는 PID를 가지고 있다. 부모 프로세스에서 자식 프로세스가 나온다. <br>
+fork() system call 부모 프로세스 복사<br>
+exec() 실행파일을 메모리로 가져오기<br>
+eixt() system call 프로세스 <br>
+
+
+## 쓰레드
+프로그램 내부의 흐름,맥
+
+#### 다중 쓰레드(multithreads)
+한 프로그램에 2개 이상의 맥이 존재한다. 맥이 빠르게 스위칭 되기 때문에 동시에 돌아가는 것 처럼 보인다.<br>
+ex) web brower 화면출력 쓰레드 + 데이터 읽어오는 쓰레드 <br>
+word processor 화면출력 쓰레드 + 키보드 입력, 철자문법오류 확인 쓰레드...
+
+### Tread vs Process
+프로세스가 조금 더 큰 개념이고 프로세스 안에 쓰레드가 존재한다. 프로세스에는 최소 하나의 쓰레드가 존재한다.<br>
+한 프로세스에 있는 쓰레드 들은 프로세스의 메모리 공간 중 code,data를 공유하고 프로세스의 자원(file,i/o...)등을 공유한다.<br>
+stack은 비공유한다. 각자 흐르고 있는 위치가 다르기 때문 <br>
+요즘 컴퓨터는 쓰레드의 스위칭이 대부분이다. <br>
+
+### 프로세스 동기화(process Synchronization)
+os가 하는 역할중 cpu관리에서 스케쥴링과 함께 가장 중요한 기능중 하나가 프로세스 동기화이다.<br>
+프로세스(쓰레드) 간에 서로 같은 데이터를 관리할 경우가 생긴다. 이때 동기화를 하지 않는다면 데이터가 잘못 된다.<br>
+왜냐하면 cpu는 쓰레드의 스위칭이 일어나는데 관리하는 중간에 스위칭이 일어나 데이터가 변경이 될 수도 있기 때문이다. <br>
+공통변수에 대한 동시 업데이트는 지양 해야한다. (임계구역 문제)<br>
+
+### 임계구역 문제(critical-section problem)
+멀티쓰레드를 가지고 있는 프로세스에서 common variables를 변경하는 코드를 critcal section이라고 부른다.<br>
+solution<br>
+mutual exclusion : 오직 한 쓰레드만 진입<br>
+progress : 진입 결정은 유한 시간 내<br>
+bounded waiting: 어느 쓰레드라도 유한 시간 내 cpu를 만나야함<br>
+프로세스(쓰레드) 동기화를 정리하자면 임계구역 문제를 해결(틀린답이 나오지 않도록)하고 프로세스를 실행 순서 제어를 하는것이다.<br>
+
+### Semaphores(세마포)
+동작: P->acquire()<br>
+      V -> release()<br>
+      ![image](https://user-images.githubusercontent.com/77154341/119251618-71bac280-bbe2-11eb-98f6-a184516ddff2.png)
+      
+      즉 쓰레드가 돌다가 acquire를 만나게 되면 블록을 시키고 release를 만나게 되면 block되어있는 쓰레드를 꺼내주게된다.<br>
+      ![image](https://user-images.githubusercontent.com/77154341/119251625-7b442a80-bbe2-11eb-92a9-7293effd1fe2.png)
+      이런식으로 하면 multual exclusion문제는 해결된다. 초기 value는 1로 설정 처음 만난 쓰레드가 acquire를 만나게 되고 만나면 value가 0이된다.<br>
+      만약에 중간에 쓰레드 스위칭이 일어나서 다른 쓰레드가 acquire를 만나면 value가 -1이 되기 때문에 그 쓰레드는 block되게 된다.<br>
+      
+      세마포를 사용해서 ordering문제도 해결 가능하다. 
+      ![image](https://user-images.githubusercontent.com/77154341/119251742-09b8ac00-bbe3-11eb-9447-859bcb30538e.png)
+      이렇게 되면 항상 P1이 먼저 실행된다. (value값은 0으로 설정)
+      
+
+
+
+
+
