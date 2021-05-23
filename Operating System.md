@@ -146,15 +146,15 @@ bounded waiting: 어느 쓰레드라도 유한 시간 내 cpu를 만나야함<br
 ### Semaphores(세마포)
 동작: P->acquire()<br>
       V -> release()<br>
-![image](https://user-images.githubusercontent.com/77154341/119251618-71bac280-bbe2-11eb-98f6-a184516ddff2.png)
+![image](https://user-images.githubusercontent.com/77154341/119251618-71bac280-bbe2-11eb-98f6-a184516ddff2.png)<br>
 즉 쓰레드가 돌다가 acquire를 만나게 되면 블록을 시키고 release를 만나게 되면 block되어있는 쓰레드를 꺼내주게된다.<br>
-![image](https://user-images.githubusercontent.com/77154341/119251625-7b442a80-bbe2-11eb-92a9-7293effd1fe2.png)
+![image](https://user-images.githubusercontent.com/77154341/119251625-7b442a80-bbe2-11eb-92a9-7293effd1fe2.png)<br>
 이런식으로 하면 multual exclusion문제는 해결된다. 초기 value는 1로 설정 처음 만난 쓰레드가 acquire를 만나게 되고 만나면 value가 0이된다.<br>
 만약에 중간에 쓰레드 스위칭이 일어나서 다른 쓰레드가 acquire를 만나면 value가 -1이 되기 때문에 그 쓰레드는 block되게 된다.<br>
-      
-세마포를 사용해서 ordering문제도 해결 가능하다. 
-![image](https://user-images.githubusercontent.com/77154341/119251742-09b8ac00-bbe3-11eb-9447-859bcb30538e.png)
-이렇게 되면 항상 P1이 먼저 실행된다. (value값은 0으로 설정)
+      <br>
+세마포를 사용해서 ordering문제도 해결 가능하다. <br>
+![image](https://user-images.githubusercontent.com/77154341/119251742-09b8ac00-bbe3-11eb-9447-859bcb30538e.png)<br>
+이렇게 되면 항상 P1이 먼저 실행된다. (value값은 0으로 설정)<br>
       
 
 
