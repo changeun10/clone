@@ -11,7 +11,9 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 
+import com.javalec.worldCup.dto.BoardDto;
 import com.javalec.worldCup.dto.Dto;
+import com.javalec.worldCup.service.BoardService;
 import com.javalec.worldCup.service.WorldCupService;
 /**
  * Handles requests for the application home page.
@@ -24,6 +26,13 @@ public class HomeController {
 	@Autowired
 	public void setService(WorldCupService service) {
 		this.service = service;
+	}
+	
+	private BoardService Bservice;
+	
+	@Autowired
+	public void setBservice(BoardService Bservice) {
+		this.Bservice = Bservice;
 	}
 	
 	@RequestMapping(value = "/{title}", method = RequestMethod.GET)
@@ -40,9 +49,28 @@ public class HomeController {
 	}
 	
 	@RequestMapping("/statistic/{title}")
-	public String statistic(Model model,@PathVariable String title,int id) {
+	public String statistic(Model model,@PathVariable String title,int id,String name) {
 		ArrayList<Dto> list = service.statistic(title, id);
 		model.addAttribute("list",list);
+		model.addAttribute("title",title);
+		model.addAttribute("name",name);
 		return "statistic";
+	}
+	
+	
+	@RequestMapping("/board")
+	public String board(Model model,String title,String name) {
+		
+		ArrayList<BoardDto> list = Bservice.list(title);
+		model.addAttribute("list",list);
+		model.addAttribute("title",title);
+		model.addAttribute("name",name);
+		return "board";
+	}
+	
+	@RequestMapping("/write")
+	public String board(String title,String name,String content) {
+		Bservice.write(title, name, content);
+		return "redirect:board?title="+title;
 	}
 }

@@ -31,8 +31,7 @@
 	<c:otherwise>
 		<img src="${list[0].image }">
 		우승: ${list[0].name }<br>
-		<a href="/worldCup/statistic/${title}?id=${list[0].id}">통계보기</a>
-		
+		<a href="/worldCup/statistic/${title}?id=${list[0].id}&name=${list[0].name}">통계보기</a>
 	</c:otherwise>
 </c:choose>
 </body>
