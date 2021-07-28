@@ -1,5 +1,6 @@
 ## 이상형 월드컵을 웹 프로그래밍으로 만들어봤다.<br>
 사용된 기술: mybatis, java Spring<br>
+7/27<br>
 처음으로 바닥부터 설계해서 만든 웹 프로그래밍이라 로직이 조금 조잡할 수 있다.<br>
 백앤드만 설계해서 ui/ux는 좋지 않다. <br>
 처음 페이지는 <br>
@@ -15,4 +16,7 @@ pathVariable로는 무엇을 선택했는지 title, parameter로는 몇강을 �
 우승횟수로 내림차순 정리를 했다.<br>
 ![image](https://user-images.githubusercontent.com/77154341/127112305-a4960e3b-014b-4394-a99b-dce40c463542.png)<br>
 상단에 home을 누르면 첫 페이지로 돌아가게 된다.<br>
+
+7/28<br>
+오늘은 이상형 월드컵에 게시판 기능을 추가하였다.<br>
 
