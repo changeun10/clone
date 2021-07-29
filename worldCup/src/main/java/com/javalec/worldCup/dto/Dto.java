@@ -5,6 +5,7 @@ public class Dto {
 	private String image;
 	private String name;
 	private int win;
+	
 	public int getWin() {
 		return win;
 	}

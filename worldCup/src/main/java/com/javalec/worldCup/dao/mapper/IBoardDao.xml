@@ -7,6 +7,6 @@
    	select * from ${value}_board order by id desc
    </select>
    <insert id="write">
-   	insert into ${title}_board values(${title}_seq.nextval,#{name},#{content},sysdate)
+   	insert into ${title}_board values(${title}_seq.nextval,#{name},#{content},sysdate,#{writer})
    </insert>
  </mapper>

@@ -22,9 +22,9 @@ public class BoardServiceLogic implements BoardService {
 	}
 
 	@Override
-	public void write(String title, String name, String content) {
+	public void write(String title, String name, String content,String writer) {
 		IBoardDao dao = sqlSession.getMapper(IBoardDao.class);
-		dao.write(title,name,content);
+		dao.write(title,name,content,writer);
 	}
 	
 

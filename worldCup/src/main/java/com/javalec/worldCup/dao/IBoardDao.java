@@ -8,5 +8,5 @@ import com.javalec.worldCup.dto.BoardDto;
 
 public interface IBoardDao {
 	public ArrayList<BoardDto> list(String title);
-	public void write(@Param("title")String title, @Param("name")String name,@Param("content")String content);
+	public void write(@Param("title")String title, @Param("name")String name,@Param("content")String content,@Param("writer")String writer);
 }

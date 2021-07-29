@@ -11,4 +11,5 @@
    	update ${param1} set win=win+1 where id=#{param2}
    </update>
    
+   
 </mapper>

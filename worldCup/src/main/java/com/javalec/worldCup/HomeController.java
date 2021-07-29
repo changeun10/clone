@@ -14,6 +14,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import com.javalec.worldCup.dto.BoardDto;
 import com.javalec.worldCup.dto.Dto;
 import com.javalec.worldCup.service.BoardService;
+import com.javalec.worldCup.service.CategoryService;
 import com.javalec.worldCup.service.WorldCupService;
 /**
  * Handles requests for the application home page.
@@ -35,16 +36,25 @@ public class HomeController {
 		this.Bservice = Bservice;
 	}
 	
+	private CategoryService Cservice;
+	
+	@Autowired
+	public void setCservice(CategoryService Cservice) {
+		this.Cservice = Cservice;
+	}
+	
 	@RequestMapping(value = "/{title}", method = RequestMethod.GET)
 	public String worldCup(Model model,Dto dto,@RequestParam(value="index", required=false,defaultValue="-1") int index,@PathVariable String title,
 			@RequestParam(value="round", required=false,defaultValue="-1") int round) {
+		Cservice.hit(title);
 		service.WorldCup(model,dto, index,title,round);
 
 		return "worldCup";
 	}
 	
 	@RequestMapping("/")
-	public String home() {
+	public String home(Model model,@RequestParam(value="type", required=false, defaultValue="0") int type) {
+		model.addAttribute("list",Cservice.list(type));
 		return "home";
 	}
 	
@@ -69,8 +79,8 @@ public class HomeController {
 	}
 	
 	@RequestMapping("/write")
-	public String board(String title,String name,String content) {
-		Bservice.write(title, name, content);
-		return "redirect:board?title="+title;
+	public String board(String title,String name,String content,String writer) {
+		Bservice.write(title, name, content, writer);
+		return "redirect:board?title="+title+"&name="+name;
 	}
 }
