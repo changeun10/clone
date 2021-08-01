@@ -8,7 +8,7 @@
 </head>
 <body>
 <h1>이상형월드컵!</h1>
-<a href="/worldCup/?type=0">인기순</a>  <a href="/worldCup/?type=1">최신순</a><br>
+<a href="/worldCup/?type=0">인기순</a>  <a href="/worldCup/?type=1">최신순</a>    <a href="/worldCup/create">이상형 월드컵 만들기</a><br>
 <br>
 	<c:forEach items="${list}" var="item">
 		<h3>${item.des }</h3>
@@ -18,9 +18,12 @@
 				<option value="8">8</option>
 				<option value="16">16</option>
 			</select>강
+			<input type="hidden" name="WorldCup_title" value=${item.des }>
 			<input type="submit" value="시작">
 		</form>
 		<br>
 	</c:forEach>
+	
+
 </body>
 </html>
