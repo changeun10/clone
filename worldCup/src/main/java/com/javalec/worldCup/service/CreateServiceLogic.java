@@ -29,7 +29,7 @@ public class CreateServiceLogic implements CreateService {
 	@Override
 	public void createNewWroldCup(String des, String[] name,
 			MultipartHttpServletRequest mRequest) {
-		List<MultipartFile> fileList = mRequest.getFiles("file");
+		List<MultipartFile> fileList = mRequest.getFiles("image");
 		MultipartFile file = mRequest.getFile("thumb");
 		String thumb_Image = file.getOriginalFilename();
 		String title = "B"+UUID.randomUUID().toString().replace("-", "").substring(15);

@@ -120,7 +120,7 @@ public class HomeController {
 	}
 
 	@RequestMapping("/createWorldCup")
-	public String test(String des,MultipartHttpServletRequest mRequest, String[] name) {
+	public String createWorldCup(String des,MultipartHttpServletRequest mRequest, String[] name) {
 		CrService.createNewWroldCup(des, name, mRequest);
 		return "redirect:/";
 	}
