@@ -76,7 +76,9 @@ pathVariable로는 무엇을 선택했는지 title, parameter로는 몇강을 �
  
  ### <8/05><br>
  어제 오늘 로그인 기능을 추가하였다. session을 통해 로그인 한 id를 기억하고 그 아이디로 만든 worldCup을 기억하게 하여 나중에 삭제도 가능하도록 하였다.<br>
- ![image](https://user-images.githubusercontent.com/77154341/128365447-ad960e33-219c-4455-8372-fbba67a6270e.png)![image](https://user-images.githubusercontent.com/77154341/128365527-19c8e7b3-1bee-4895-b1b1-a5330c652576.png)<br>
+ ![image](https://user-images.githubusercontent.com/77154341/128365447-ad960e33-219c-4455-8372-fbba67a6270e.png)<br>
+ ---------------------------<br>
+ ![image](https://user-images.githubusercontent.com/77154341/128365527-19c8e7b3-1bee-4895-b1b1-a5330c652576.png)<br>
  삭제도 가능하다. 삭제를 누르면 category에서 삭제 되고 파일을 닮고 있던 table도 삭제된다. 게시판 table도 삭제된다. <br>
  <br>
  회원가입도 구현하였다.<br>
