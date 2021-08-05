@@ -77,12 +77,12 @@ $(document).ready(function() {
 			contentType: false,
 			cache: false,
 			timeout: 600000,
-			success: function(data) {
+			success: function() {
 				
 				alert('success')
 				window.location.href = "/worldCup";
 			},
-			error: function(e) {
+			error: function() {
 				
 				alert('fail');
 			}

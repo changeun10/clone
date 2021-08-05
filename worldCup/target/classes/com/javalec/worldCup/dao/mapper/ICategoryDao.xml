@@ -10,8 +10,27 @@
 	<select id="listByHit" resultType="com.javalec.worldCup.dto.CategoryDto">
 		select * from category order by hit desc
 	</select>
+	
+	<select id="myList" resultType="com.javalec.worldCup.dto.CategoryDto">
+		select * from category where maker=#{param1}
+	</select>
 	<update id="hit">
 		update category set hit=hit+1 where title=#{title}
+	</update>
+	
+	<delete id="delete">
+		delete from category where id=#{param1}
+	</delete>
+	
+	<update id="deleteTables">
+	
+		{call
+		declare
+		begin
+			execute immediate 'drop table ${title}';
+			execute immediate 'drop table ${title}_board';
+		end
+		}
 	</update>
 	
 </mapper>

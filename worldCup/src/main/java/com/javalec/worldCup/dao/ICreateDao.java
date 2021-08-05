@@ -9,7 +9,7 @@ import com.javalec.worldCup.dto.Dto;
 
 public interface ICreateDao {
 	public void insertCategory(@Param("title")String title,
-			@Param("des")String des,@Param("thumb_image")String thumb_image);
+			@Param("des")String des,@Param("thumb_image")String thumb_image, @Param("maker")String maker);
 	public void createTable(@Param("title")String title);
 	public void createTableSeq(@Param("title")String title);
 	

@@ -4,7 +4,7 @@
     "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.javalec.worldCup.dao.ICreateDao">
 	<insert id="insertCategory">
-		insert into category values (category_seq.nextval,#{title},#{des},#{thumb_image},0,sysdate)
+		insert into category values (category_seq.nextval,#{title},#{des},#{thumb_image},0,sysdate,#{maker})
 	</insert>
 	
 	

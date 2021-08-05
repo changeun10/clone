@@ -28,7 +28,7 @@ public class CreateServiceLogic implements CreateService {
 
 	@Override
 	public void createNewWroldCup(String des, String[] name,
-			MultipartHttpServletRequest mRequest) {
+			MultipartHttpServletRequest mRequest,String maker) {
 		List<MultipartFile> fileList = mRequest.getFiles("image");
 		MultipartFile file = mRequest.getFile("thumb");
 		String thumb_Image = file.getOriginalFilename();
@@ -36,7 +36,7 @@ public class CreateServiceLogic implements CreateService {
 		
 		ICreateDao dao = sqlSession.getMapper(ICreateDao.class);
 
-		dao.insertCategory(title, des, "resources/thumb/"+thumb_Image);
+		dao.insertCategory(title, des, "resources/thumb/"+thumb_Image,maker);
 		dao.createTable(title);
 		dao.createTableSeq(title);
 		ArrayList<Dto> list = new ArrayList<Dto>();

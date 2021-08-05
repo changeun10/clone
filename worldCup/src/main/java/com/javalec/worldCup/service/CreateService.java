@@ -6,5 +6,5 @@ import org.springframework.web.multipart.MultipartHttpServletRequest;
 
 public interface CreateService {
 	public void createNewWroldCup(String des, String[] name,
-			MultipartHttpServletRequest mRequest);
+			MultipartHttpServletRequest mRequest,String maker);
 }

@@ -33,4 +33,23 @@ public class CategoryServiceLogic implements CategoryService {
 		dao.hit(title);	
 	}
 
+	@Override
+	public ArrayList<CategoryDto> myList(String id) {
+		ICategoryDao dao = sqlSession.getMapper(ICategoryDao.class);
+		return dao.myList(id);
+	}
+
+	@Override
+	public void delete(int id) {
+		ICategoryDao dao = sqlSession.getMapper(ICategoryDao.class);
+		dao.delete(id);
+	}
+
+	@Override
+	public void deleteTalbes(String title) {
+		ICategoryDao dao = sqlSession.getMapper(ICategoryDao.class);
+		dao.deleteTables(title);
+		
+	}
+
 }
