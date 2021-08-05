@@ -74,4 +74,19 @@ pathVariable로는 무엇을 선택했는지 title, parameter로는 몇강을 �
  자바 스크립트 공부좀 해야겠다.. 너무 어렵다 ㅠㅠ 
  
  
+ ### <8/05><br>
+ 어제 오늘 로그인 기능을 추가하였다. session을 통해 로그인 한 id를 기억하고 그 아이디로 만든 worldCup을 기억하게 하여 나중에 삭제도 가능하도록 하였다.<br>
+ ![image](https://user-images.githubusercontent.com/77154341/128365447-ad960e33-219c-4455-8372-fbba67a6270e.png)![image](https://user-images.githubusercontent.com/77154341/128365527-19c8e7b3-1bee-4895-b1b1-a5330c652576.png)<br>
+ 삭제도 가능하다. 삭제를 누르면 category에서 삭제 되고 파일을 닮고 있던 table도 삭제된다. 게시판 table도 삭제된다. <br>
+ <br>
+ 회원가입도 구현하였다.<br>
+ ![image](https://user-images.githubusercontent.com/77154341/128366118-920e5f74-621d-438b-a3d2-afb037ca501b.png)<br>
+ 아이디 input에 입력하게 되면 ajax를 통해 사용가능한 아이디인지 체크한다. 그리고 비밀번호 확인에 입력하게 되면 위의 비밀번호와 일치하는지 확인한다.<br>
+ 이렇게 두개 조건이 만족하게 되면 가입이 가능해진다. <br><br>
+
+ 오늘의 배운점: mybatis 에서 declare을 사용하여 한번에 두개의 테이블을 drop하고 싶었는데 바로 drop을 하게 되면 오류가 발생한다. (DDL은 다르게 실행해야한다)<br>
+ execute immediate 'drop table ${title}'; 이런식으로 적용하면 된다. <br>
+ 
+
+
  
