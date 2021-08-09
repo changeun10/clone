@@ -1,11 +1,21 @@
 package com.javalec.worldCup.dto;
 
+import java.util.List;
+
 public class Dto {
 	private int id;
 	private String image;
 	private String name;
 	private int win;
 	
+	private List<Dto> dtoList;
+	
+	public List<Dto> getDtoList() {
+		return dtoList;
+	}
+	public void setDtoList(List<Dto> dtoList) {
+		this.dtoList = dtoList;
+	}
 	public int getWin() {
 		return win;
 	}

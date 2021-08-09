@@ -2,6 +2,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@ page session="True" %>
+<%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>
 <html>
 <head>
 	<title>Home</title>
@@ -20,14 +21,34 @@
 				${length }강	<br>
 			</c:otherwise>
 		</c:choose>
-	
+		
 		<c:set var="i" value="${index }"/>
 		<img src="${list[i].image }" width="200",height="200">
-		<a href="/worldCup/${title }?index=${index}&id=${list[i].id}&name=${list[i].name }&image=${list[i].image }&WorldCup_title=${WorldCup_title}"><button>${list[i].name }</button></a><br>
+		<form action="/worldCup/${title }" method="post">
+			<input type="hidden" name ="index" value="${index}">
+			<input type="hidden" name ="id" value="${list[i].id}">
+			<input type="hidden" name ="name" value="${list[i].name }">
+			<input type="hidden" name ="image" value="${list[i].image }">
+			<input type="hidden" name ="WorldCup_title" value="${WorldCup_title}">
+			<input type="submit" value="${list[i].name }">
+		</form>
+		
+		
+		<%-- <a href="/worldCup/${title }?index=${index}&id=${list[i].id}&name=${list[i].name }&image=${list[i].image }&WorldCup_title=${WorldCup_title}"><button>${list[i].name }</button></a><br> --%>
 		<img src="${list[i+1].image }" width="200",height="200">
-		<a href="/worldCup/${title }?index=${index}&id=${list[i+1].id}&name=${list[i+1].name }&image=${list[i+1].image }&WorldCup_title=${WorldCup_title}"><button>${list[i+1].name }</button></a><br>
+		<form action="/worldCup/${title }" method="post">
+			<input type="hidden" name ="index" value="${index}">
+			<input type="hidden" name ="id" value="${list[i+1].id}">
+			<input type="hidden" name ="name" value="${list[i+1].name }">
+			<input type="hidden" name ="image" value="${list[i+1].image }">
+			<input type="hidden" name ="WorldCup_title" value="${WorldCup_title}">
+			<input type="submit" value="${list[i+1].name }">
+		</form>
+		<%-- <a href="/worldCup/${title }?index=${index}&id=${list[i+1].id}&name=${list[i+1].name }&image=${list[i+1].image }&WorldCup_title=${WorldCup_title}"><button>${list[i+1].name }</button></a><br> --%>
+		
 		
 	</c:when>
+	
 	<c:otherwise>
 		<img src="${list[0].image }">
 		우승: ${list[0].name }<br>

@@ -1,6 +1,8 @@
 package com.javalec.worldCup;
 
 import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.List;
 
 import javax.servlet.http.HttpSession;
 
@@ -65,16 +67,20 @@ public class HomeController {
 		this.Lservice=Lservice;
 	}
 	
-	@RequestMapping(value = "/{title}", method = RequestMethod.GET)
-	public String worldCup(Model model, Dto dto,
+	@RequestMapping(value = "/{title}")
+	public String worldCup(Model model, Dto dto, HttpSession session,
 			@RequestParam(value = "index", required = false, defaultValue = "-1") int index, 
 			@PathVariable String title,
 			@RequestParam(value = "round", required = false, defaultValue = "-1") int round,
 			@RequestParam(value="WorldCup_title",required=false) String WorldCup_title) {
-		Cservice.hit(title);
-		service.WorldCup(model, dto, index, title, round);
+		if (index==-1) {
+			Cservice.hit(title);
+		}
+		
+		service.WorldCup(model, dto, index, title, round, session);
 		model.addAttribute("WorldCup_title",WorldCup_title);
-
+		model.addAttribute("model",model);
+		
 		return "worldCup";
 	}
 
@@ -177,5 +183,13 @@ public class HomeController {
 		Cservice.delete(id);
 		Cservice.deleteTalbes(title);
 		return "redirect:/myWorldCup";
+	}
+	
+	@RequestMapping("/test")
+	public String test(@RequestParam(value="a",required=false) List<String> kk) {
+		if(kk!=null) {
+		System.out.println(kk);
+		}
+		return "test";
 	}
 }
