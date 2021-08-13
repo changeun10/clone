@@ -116,8 +116,13 @@ public class HomeController {
 	}
 
 	@RequestMapping("/create")
-	public String create() {
-		return "create";
+	public String create(HttpSession session) {
+		String id = (String)session.getAttribute("id");
+		if (id==null) {
+			return "login";
+		} else {
+			return "create";
+		}
 	}
 
 	@RequestMapping("/createWorldCup")
