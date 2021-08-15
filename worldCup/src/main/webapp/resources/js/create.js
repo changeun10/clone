@@ -1,9 +1,17 @@
 $(document).ready(function() {
+	var i = 0;
+	
+	var imageArr = new Array();
 	$(document).on("change", "#image", function(event) {
-		const fileArr = Array.from(event.target.files)
-		var i = 0;
+
+		
+		
+		var fileArr = Array.from(event.target.files)
+		for (var file of fileArr) {
+			 imageArr.push(file);
+		}
+		
 		const multipleContainer = document.getElementById("image_container")
-        const $colDiv1 = document.createElement("div")
         
         fileArr.forEach((file, index) => {
             const reader = new FileReader()
@@ -33,10 +41,9 @@ $(document).ready(function() {
                 $img.src = e.target.result
             }
             
-            $colDiv1.appendChild($imgDiv)
+            multipleContainer.appendChild($imgDiv)
             reader.readAsDataURL(file)
         })
-        multipleContainer.appendChild($colDiv1)
 	});
 
 	var deletArray = new Array();
@@ -61,9 +68,10 @@ $(document).ready(function() {
 		
 		var form = $('#uploadForm')[0];
 		data.append("thumb", form.thumb.files[0])
-		for (var i = 0; i < form.image.files.length; i++) {
+		
+		for (var i = 0; i < imageArr.length; i++) {
 			if (!deletArray.includes(i)){
-				var k = form.image.files[i];
+				var k = imageArr[i];
 				data.append("image", k)	
 			}
 		}
