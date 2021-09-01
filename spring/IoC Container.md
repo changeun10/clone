@@ -7,3 +7,5 @@
 만든 사람이 IoC라는 말을 강조하고 싶었나보다... 일단 IoC(Inversion of Control)는 우리가 부품을 생성하고 조립하는 과정과 반대라는 의미이다.<br>
 원래는 큰부품을 만들면서 자연스럽게 하위 부품들이 생성되는 구조인데 IoC Container같은 경우는 작은 부품을 먼저 만들고 위에 있는 부품에 주입을 하게 된다.<Br>
 여기서 보면 Control의 역전이 일어났다 해서 IoC Container라고 부른다. <br><br>
+![image](https://user-images.githubusercontent.com/77154341/131627653-61e85ebe-c4e9-4e20-b95d-43710551a005.png)<br>
+(위에는 일체형으로 만든 일반적인 class이고 아래는 DI를 통해 만든 class이다.) 
