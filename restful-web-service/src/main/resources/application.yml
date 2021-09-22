@@ -1,0 +1,20 @@
+server:
+  port: 8088
+
+logging:
+  level:
+    org.springframework: DEBUG
+
+spring:
+  jpa:
+    show-sql: true
+    hibernate:
+      ddl-auto: create
+  message:
+    basename: messages
+
+management:
+  endpoints:
+    web:
+      exposure:
+        include: "*"
