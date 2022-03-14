@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+    PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+    "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.javalec.worldCup.dao.ICreateDao">
+	<insert id="insertCategory">
+		insert into category values (category_seq.nextval,#{title},#{des},#{thumb_image},0,sysdate,#{maker})
+	</insert>
+	
+	
+	<select id="createTable">
+		create table ${title}(
+			id number(4),
+			image varchar(100),
+			name varchar(100),
+			win number(4)
+			)
+	</select>
+	
+	<select id="createTableSeq">
+		create sequence ${title}_seq
+	</select>
+	
+	
+	<insert id="insertCreatedTable" parameterType="java.util.List">
+		insert into ${title}
+		select ${title}_seq.nextval, A.* from(
+			<foreach item="item" index="index" collection="list" separator="union all">
+				select  '${item.image}' , '${item.name}',0 from dual
+			</foreach>)A
+	</insert>
+	
+	<select id="createBoard">
+		create table ${title}_board (
+			id number(4),
+			name varchar(100),
+			content varchar(100),
+			regDate date,
+			writer varchar(100)
+			)
+	</select>
+	
+	<select id="createBoardSeq">
+		create sequence ${title}_board_seq
+	</select>
+   
+ </mapper>
