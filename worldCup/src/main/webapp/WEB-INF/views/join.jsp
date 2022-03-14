@@ -54,7 +54,7 @@ $(document).ready(function() {
 			console.log(data);
 			$.ajax({
 				type:"post",
-				url:"doJoin",
+				url:"join",
 				contentType: "application/x-www-form-urlencoded; charset=UTF-8",
 				processData: false,
 				data: data,

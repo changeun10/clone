@@ -1,7 +1,6 @@
 package com.javalec.worldCup.dao;
 
 import java.util.ArrayList;
-import java.util.List;
 
 import org.apache.ibatis.annotations.Param;
 

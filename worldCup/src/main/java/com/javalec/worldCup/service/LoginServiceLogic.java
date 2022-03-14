@@ -34,15 +34,11 @@ public class LoginServiceLogic implements LoginService {
 		ILoginDao dao = sqlSession.getMapper(ILoginDao.class);
 		LoginDto dto = dao.checkId(id);
 		if(dto==null) {
-			System.out.println("null");
 			return false;
 		}
 		if (dto.getPw().equals(pw)) {
 			return true;
 		} else {
-			System.out.println(dto.getPw());
-			System.out.println(pw);
-			System.out.println("wrong");
 			return false;
 		}
 	}
