@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+    PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+    "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.javalec.worldCup.dao.IWorldCupDao">
+	<select id="listByDate" resultType="com.javalec.worldCup.dto.WorldCupDto">
+		select * from worldCup order by regDate desc
+	</select>
+	<select id="listByHit" resultType="com.javalec.worldCup.dto.WorldCupDto">
+		select * from worldCup order by hit desc
+	</select>
+	
+	<update id="hit">
+		update worldCup set hit=hit+1 where id=#{id}
+	</update>
+	
+	<select id="myList" resultType="com.javalec.worldCup.dto.WorldCupDto">
+		select * from worldCup where writer=#{param1}
+	</select>
+	
+	<delete id="delete">
+		delete from worldCup where id=#{param1}
+	</delete>
+	<delete id="deleteContent">
+		delete from content where worldCup_id = #{param1}
+	</delete>
+	
+</mapper>

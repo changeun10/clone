@@ -16,15 +16,15 @@ public class BoardServiceLogic implements BoardService {
 	private SqlSession sqlSession;
 	
 	@Override
-	public ArrayList<BoardDto> list(String title) {
+	public ArrayList<BoardDto> list(int worldCup_id) {
 		IBoardDao dao = sqlSession.getMapper(IBoardDao.class);
-		return dao.list(title);
+		return dao.list(worldCup_id);
 	}
 
 	@Override
-	public void write(String title, String name, String content,String writer) {
+	public void write(int id, String name, String content,String writer) {
 		IBoardDao dao = sqlSession.getMapper(IBoardDao.class);
-		dao.write(title,name,content,writer);
+		dao.write(id,name,content,writer);
 	}
 	
 

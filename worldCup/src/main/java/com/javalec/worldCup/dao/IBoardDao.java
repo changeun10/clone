@@ -7,6 +7,7 @@ import org.apache.ibatis.annotations.Param;
 import com.javalec.worldCup.dto.BoardDto;
 
 public interface IBoardDao {
-	public ArrayList<BoardDto> list(String title);
-	public void write(@Param("title")String title, @Param("name")String name,@Param("content")String content,@Param("writer")String writer);
+	public ArrayList<BoardDto> list(int worldCup_id);
+
+	public void write(int id, String name, String content, String writer);
 }
