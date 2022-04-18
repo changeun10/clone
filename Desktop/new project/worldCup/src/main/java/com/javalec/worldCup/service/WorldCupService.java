@@ -6,9 +6,10 @@ import javax.servlet.http.HttpSession;
 
 import org.springframework.ui.Model;
 
-import com.javalec.worldCup.dto.Dto;
+import com.javalec.worldCup.dto.ContentDto;
 
 public interface WorldCupService {
-	public void WorldCup(Model model,Dto dto,int index,String title,int round,HttpSession session);
-	public ArrayList<Dto> statistic(String title,int id);
+	public void WorldCup(Model model, ContentDto dto, int index, int id, int round, HttpSession session);
+
+	public ArrayList<ContentDto> statistic(int id, String name);
 }

@@ -2,12 +2,11 @@ package com.javalec.worldCup.service;
 
 import java.util.ArrayList;
 
-import com.javalec.worldCup.dto.CategoryDto;
+import com.javalec.worldCup.dto.WorldCupDto;
 
 public interface CategoryService {
-	public ArrayList<CategoryDto> list(int type);
-	public void hit(String title);
-	public ArrayList<CategoryDto> myList(String id);
+	public ArrayList<WorldCupDto> list(int type);
+	public void hit(int id);
+	public ArrayList<WorldCupDto> myList(String id);
 	public void delete(int id);
-	public void deleteTalbes(String title);
 }

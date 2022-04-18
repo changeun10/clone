@@ -10,15 +10,17 @@
 <body>
 <a href="/worldCup">홈으로</a>
 내가 만든 월드컵
+
 	<c:forEach items="${list}" var="item">
-		<h3>${item.des }</h3>
-		<img src="${item.thumb_image }">
+		${item.id }
+		<h3>${item.title }</h3>
+		<img src="${item.thumb_img }">
 		<form action="/worldCup/${item.title }" method="get">
 			<select name="round">
 				<option value="8">8</option>
 				<option value="16">16</option>
 			</select>강
-			<input type="hidden" name="WorldCup_title" value=${item.des }>
+			<input type="hidden" name="WorldCup_title" value=${item.title }>
 			<input type="submit" value="시작">
 		</form>
 		

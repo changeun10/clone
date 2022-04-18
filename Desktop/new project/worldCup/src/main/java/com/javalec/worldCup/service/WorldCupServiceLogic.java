@@ -11,81 +11,76 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.ui.Model;
 
-import com.javalec.worldCup.dao.IDao;
-import com.javalec.worldCup.dto.Dto;
+import com.javalec.worldCup.dao.IContentDao;
+import com.javalec.worldCup.dto.ContentDto;
 
 @Service
 public class WorldCupServiceLogic implements WorldCupService {
-	
+
 	@Autowired
 	private SqlSession sqlSession;
-	
-	
-	
+
 	@Override
-	public void WorldCup(Model model,Dto dto,int index,String title,int round,HttpSession session) {
-		model.addAttribute("title",title);
-		
+	public void WorldCup(Model model, ContentDto dto, int index, int id, int round, HttpSession session) {
+
 		int length;
-		
-		List<Dto> list;
-		ArrayList<Dto> temp;
-		
-		
-		if(index==-1) {
-			list = new ArrayList<Dto>();
-			temp = new ArrayList<Dto>();
+
+		List<ContentDto> list;
+		ArrayList<ContentDto> temp;
+
+		if (index == -1) {
+			list = new ArrayList<ContentDto>();
+			temp = new ArrayList<ContentDto>();
 			session.setAttribute("temp", temp);
 			session.setAttribute("list", list);
-			
+
 		} else {
-			list = (List<Dto>)session.getAttribute("list");
-			temp = (ArrayList<Dto>)session.getAttribute("temp");
+			list = (List<ContentDto>) session.getAttribute("list");
+			temp = (ArrayList<ContentDto>) session.getAttribute("temp");
 		}
-		
-		if(dto.getName()!=null) {
-			temp = (ArrayList<Dto>)session.getAttribute("temp");
+
+		if (dto.getName() != null) {
+			temp = (ArrayList<ContentDto>) session.getAttribute("temp");
 			temp.add(dto);
 			session.setAttribute("temp", temp);
 		} else {
-			IDao dao = sqlSession.getMapper(IDao.class);
-			list = dao.list(title);
+			IContentDao dao = sqlSession.getMapper(IContentDao.class);
+			list = dao.list(id);
 			Collections.shuffle(list);
 			list = list.subList(0, round);
-			
+
 			session.setAttribute("list", list);
 		}
-		length=list.size();
-		
-		if (index+2==length) {
+		length = list.size();
+
+		if (index + 2 == length) {
 			index = -2;
-			list = new ArrayList<Dto>(temp);
+			list = new ArrayList<ContentDto>(temp);
 			Collections.shuffle(list);
 			temp.clear();
-			length = length/2;
+			length = length / 2;
 			session.setAttribute("list", list);
 			session.setAttribute("temp", temp);
 		}
-		
-		
-		if(index==-1) {
-			model.addAttribute("index",0);
+
+		if (index == -1) {
+			model.addAttribute("index", 0);
 		} else {
-			model.addAttribute("index",index+2);
+			model.addAttribute("index", index + 2);
 		}
-		if(length<1) {
-			model.addAttribute("list",temp);
+		if (length < 1) {
+			model.addAttribute("list", temp);
 		} else {
-			model.addAttribute("list",list);
-			model.addAttribute("length",length);
+			model.addAttribute("list", list);
+			model.addAttribute("length", length);
 		}
 	}
 
 	@Override
-	public ArrayList<Dto> statistic(String title, int id) {
-		IDao dao = sqlSession.getMapper(IDao.class);
-		dao.update(title, id);
-		
-		return dao.list(title);
+	public ArrayList<ContentDto> statistic(int id ,String name) {
+		IContentDao dao = sqlSession.getMapper(IContentDao.class);
+		dao.update(id, name);
+
+		return dao.list(id);
 	}
 }

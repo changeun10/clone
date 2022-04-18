@@ -8,13 +8,22 @@ public class BoardDto {
 	private String content;
 	private Date regDate;
 	private String writer;
-	
+	private int worldCup_id;
+
 	public String getWriter() {
 		return writer;
 	}
 
 	public void setWriter(String writer) {
 		this.writer = writer;
+	}
+
+	public int getWorldCup_id() {
+		return worldCup_id;
+	}
+
+	public void setWorldCup_id(int worldCup_id) {
+		this.worldCup_id = worldCup_id;
 	}
 
 	public int getId() {

@@ -9,7 +9,7 @@
 </head>
 <body>
 	<a href="/worldCup/">home</a>
-	<a href="/worldCup/board?title=${title }&id=${id }&name=${name}">게시판</a>
+	<a href="/worldCup/board?id=${id }&name=${name}">게시판</a>
 	
 	
 	<table width="500" cellpadding="0" cellspacing="0" border="1">

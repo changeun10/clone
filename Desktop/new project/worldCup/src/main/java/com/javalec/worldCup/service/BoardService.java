@@ -5,6 +5,6 @@ import java.util.ArrayList;
 import com.javalec.worldCup.dto.BoardDto;
 
 public interface BoardService {
-	public ArrayList<BoardDto> list(String title);
-	public void write(String title,String name,String content,String writer);
+	public ArrayList<BoardDto> list(int worldCup_id);
+	public void write(int id,String name,String content,String writer);
 }
