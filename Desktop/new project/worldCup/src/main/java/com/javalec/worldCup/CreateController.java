@@ -6,13 +6,15 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.multipart.MultipartHttpServletRequest;
 
 import com.javalec.worldCup.service.CreateService;
 
 @Controller
+@RequestMapping("/worldCup")
 public class CreateController {
-
+ 
 	@Autowired
 	private CreateService CrService;
 
@@ -29,8 +31,10 @@ public class CreateController {
 	@RequestMapping(method = RequestMethod.POST, value = "/create")
 	public String createWorldCup(String des, MultipartHttpServletRequest mRequest, String[] name, HttpSession session) {
 		String maker = (String) session.getAttribute("id");
+		System.out.println(maker);
 		CrService.createNewWroldCup(des, name, mRequest, maker);
-		return "redirect:/";
+		
+		return "redirect:/worldCup/";
 	}
 
 }

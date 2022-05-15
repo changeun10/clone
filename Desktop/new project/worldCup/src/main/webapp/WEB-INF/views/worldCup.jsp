@@ -23,7 +23,7 @@
 		</c:choose>
 		
 		<c:set var="i" value="${index }"/>
-		<img src="${list[i].image }" width="200",height="200">
+		<img src="/${list[i].image }" width="200",height="200">
 		<form action="/worldCup/${id }" method="post">
 			<input type="hidden" name ="index" value="${index}">
 			<input type="hidden" name ="WorldCup_title" value="${worldCup_title}">
@@ -35,7 +35,7 @@
 		
 		
 		<%-- <a href="/worldCup/${title }?index=${index}&id=${list[i].id}&name=${list[i].name }&image=${list[i].image }&WorldCup_title=${WorldCup_title}"><button>${list[i].name }</button></a><br> --%>
-		<img src="${list[i+1].image }" width="200",height="200">
+		<img src="/${list[i+1].image }" width="200",height="200">
 		<form action="/worldCup/${id }" method="post">
 			<input type="hidden" name ="index" value="${index}">
 			<input type="hidden" name ="WorldCup_title" value="${worldCup_title}">
@@ -50,7 +50,7 @@
 	</c:when>
 	
 	<c:otherwise>
-		<img src="${list[0].image }">
+		<img src="/${list[0].image }">
 		우승: ${list[0].name }<br>
 		${list[0].name}
 		<a href="/worldCup/statistic/${id}?name=${list[0].name}&WorldCup_title=${WorldCup_title}">통계보기</a>

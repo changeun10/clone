@@ -10,34 +10,33 @@ import javax.servlet.ServletContext;
 import org.apache.ibatis.session.SqlSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-import org.springframework.transaction.annotation.Transactional;
+ 
 import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.multipart.MultipartHttpServletRequest;
 
 import com.javalec.worldCup.dao.ICreateDao;
 import com.javalec.worldCup.dto.ContentDto;
 
-@Transactional
 @Service
 public class CreateServiceLogic implements CreateService {
 	
 	@Autowired
-	private SqlSession sqlSession;
+	private ServletContext servletContext;
 	
 	@Autowired
-	private ServletContext servletContext;
-
+	private ICreateDao dao;
+	
 	@Override
 	public void createNewWroldCup(String title, String[] name,
 			MultipartHttpServletRequest mRequest,String maker) {
+		
 		List<MultipartFile> fileList = mRequest.getFiles("image");
 		MultipartFile file = mRequest.getFile("thumb");
 		String thumb_img = file.getOriginalFilename();
 		
-		ICreateDao dao = sqlSession.getMapper(ICreateDao.class);
 		
 		int a = dao.createWorldCup("resources/thumb/"+thumb_img, title, maker);
-		System.out.println(a);
+		
 		
 		ArrayList<ContentDto> list = new ArrayList<ContentDto>();
 		for(int i=0;i<name.length;i++) {
@@ -50,8 +49,9 @@ public class CreateServiceLogic implements CreateService {
 		}
 		
 		dao.insertContent(list);
-		
+	
 		String path = servletContext.getRealPath("resources");
+		
 		try {
 			file.transferTo(new File(path+"/thumb", thumb_img));
 		} catch (IllegalStateException e1) {
@@ -60,7 +60,7 @@ public class CreateServiceLogic implements CreateService {
 			e1.printStackTrace();
 		}
 		File Folder = new File(path, title);
-
+		
 		if (!Folder.exists()) {
 			try {
 				Folder.mkdir();
@@ -72,7 +72,7 @@ public class CreateServiceLogic implements CreateService {
 		path = path +"/"+title;
 		
 		for (MultipartFile mf : fileList) {
-			String originFileName = mf.getOriginalFilename(); // ¿øº» ÆÄÀÏ ¸í
+			String originFileName = mf.getOriginalFilename(); // ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½
 			File saveFile = new File(path, originFileName);
 			try {
 				mf.transferTo(saveFile);
@@ -82,6 +82,7 @@ public class CreateServiceLogic implements CreateService {
 				e.printStackTrace();
 			}
 		}
+		
 		
 	}
 

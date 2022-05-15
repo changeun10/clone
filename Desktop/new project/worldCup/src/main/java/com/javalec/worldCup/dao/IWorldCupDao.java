@@ -2,8 +2,13 @@ package com.javalec.worldCup.dao;
 
 import java.util.ArrayList;
 
+import org.apache.ibatis.annotations.Mapper;
+import org.springframework.stereotype.Repository;
+
 import com.javalec.worldCup.dto.WorldCupDto;
 
+@Repository
+@Mapper
 public interface IWorldCupDao {
 	public ArrayList<WorldCupDto> listByDate();
 	public ArrayList<WorldCupDto> listByHit();

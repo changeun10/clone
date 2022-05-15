@@ -10,6 +10,7 @@ import com.javalec.worldCup.dto.LoginDto;
 import com.javalec.worldCup.service.LoginService;
 
 @Controller
+@RequestMapping("/worldCup")
 public class JoinController {
 
 	@Autowired

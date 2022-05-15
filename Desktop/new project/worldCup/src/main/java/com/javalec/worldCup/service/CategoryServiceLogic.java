@@ -4,6 +4,8 @@ import java.util.ArrayList;
 
 import org.apache.ibatis.session.SqlSession;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.cache.annotation.CacheEvict;
+import org.springframework.cache.annotation.Cacheable;
 import org.springframework.stereotype.Service;
 
 import com.javalec.worldCup.dao.IWorldCupDao;
@@ -11,41 +13,39 @@ import com.javalec.worldCup.dto.WorldCupDto;
 
 @Service
 public class CategoryServiceLogic implements CategoryService {
-
+  
 	@Autowired
-	private SqlSession sqlSession;
+	private IWorldCupDao IWorldCupDao;
 
 	@Override
 	public ArrayList<WorldCupDto> list(int type) {
-		IWorldCupDao dao = sqlSession.getMapper(IWorldCupDao.class);
-		if (type==0) {
-			return dao.listByHit();
+		if (type == 0) {
+			return IWorldCupDao.listByHit();
 		} else {
-			return dao.listByDate();
+			return IWorldCupDao.listByDate();
 		}
 	}
 
 	@Override
 	public void hit(int id) {
-		IWorldCupDao dao = sqlSession.getMapper(IWorldCupDao.class);
-		dao.hit(id);	
+		IWorldCupDao.hit(id);
 	}
 
 	@Override
 	public ArrayList<WorldCupDto> myList(String id) {
-		IWorldCupDao dao = sqlSession.getMapper(IWorldCupDao.class);
-		return dao.myList(id);
+
+		return IWorldCupDao.myList(id);
 	}
 
 	@Override
 	public void delete(int id) {
-		IWorldCupDao dao = sqlSession.getMapper(IWorldCupDao.class);
-		dao.delete(id);
-		dao.deleteContent(id);
+		IWorldCupDao.delete(id);
+		IWorldCupDao.deleteContent(id);
 	}
 
-	
-	
 
-
+	@CacheEvict(value = "statistic",key="#id")
+	public void deleteCache(int id ) {
+		System.out.println("캐시 삭제");
+	}
 }

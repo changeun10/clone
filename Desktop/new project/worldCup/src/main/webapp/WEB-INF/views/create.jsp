@@ -6,7 +6,7 @@
 <meta charset="EUC-KR">
 <title>Insert title here</title>
 <script src="http://code.jquery.com/jquery-3.5.1.min.js"></script>
-<script src="resources/js/create.js"></script>
+<script src="/resources/js/create.js"></script>
 </head>
 <body>
 	<a href="/worldCup/">홈으로</a>

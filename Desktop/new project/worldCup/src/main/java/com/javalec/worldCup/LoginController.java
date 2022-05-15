@@ -11,6 +11,7 @@ import com.javalec.worldCup.dto.LoginDto;
 import com.javalec.worldCup.service.LoginService;
 
 @Controller
+@RequestMapping("/worldCup")
 public class LoginController {
 
 	@Autowired
@@ -25,7 +26,7 @@ public class LoginController {
 	public String doLogin(String id, String pw, HttpSession session) {
 		if (Lservice.checkLogin(id, pw)) {
 			session.setAttribute("id", id);
-			return "redirect:/";
+			return "redirect:/worldCup/";
 		} else {
 			return "login";
 		}
@@ -34,6 +35,6 @@ public class LoginController {
 	@RequestMapping("/logout")
 	public String logout(HttpSession session) {
 		session.removeAttribute("id");
-		return "redirect:/";
+		return "redirect:/worldCup/";
 	}
 }

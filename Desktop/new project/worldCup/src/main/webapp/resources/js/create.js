@@ -86,9 +86,9 @@ $(document).ready(function() {
 			cache: false,
 			timeout: 600000,
 			success: function() {
-
-				alert('success')
-				window.location.href = "/worldCup";
+				
+				alert('success1')
+				window.location.href = "/worldCup/";
 			},
 			error: function() {
 

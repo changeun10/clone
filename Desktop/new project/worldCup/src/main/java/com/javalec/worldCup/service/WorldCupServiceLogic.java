@@ -2,14 +2,20 @@ package com.javalec.worldCup.service;
 
 import java.util.ArrayList;
 import java.util.Collections;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import javax.servlet.http.HttpSession;
 
 import org.apache.ibatis.session.SqlSession;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.cache.annotation.CacheEvict;
+import org.springframework.cache.annotation.Cacheable;
+import org.springframework.cache.ehcache.EhCacheCacheManager;
 import org.springframework.stereotype.Service;
 import org.springframework.ui.Model;
+import org.springframework.util.StopWatch;
 
 import com.javalec.worldCup.dao.IContentDao;
 import com.javalec.worldCup.dto.ContentDto;
@@ -17,8 +23,11 @@ import com.javalec.worldCup.dto.ContentDto;
 @Service
 public class WorldCupServiceLogic implements WorldCupService {
 
+	@Autowired 
+	private IContentDao dao;
+
 	@Autowired
-	private SqlSession sqlSession;
+	private EhCacheCacheManager cacheManager;
 
 	@Override
 	public void WorldCup(Model model, ContentDto dto, int index, int id, int round, HttpSession session) {
@@ -44,7 +53,7 @@ public class WorldCupServiceLogic implements WorldCupService {
 			temp.add(dto);
 			session.setAttribute("temp", temp);
 		} else {
-			IContentDao dao = sqlSession.getMapper(IContentDao.class);
+
 			list = dao.list(id);
 			Collections.shuffle(list);
 			list = list.subList(0, round);
@@ -74,13 +83,30 @@ public class WorldCupServiceLogic implements WorldCupService {
 			model.addAttribute("list", list);
 			model.addAttribute("length", length);
 		}
+
+		if (length == 1) {
+			//dao.update(id, list.get(0).getName());
+			
+			System.out.println(cacheManager.getCacheManager().getCache("win").get(id).getObjectKey());
+			System.out.println(cacheManager.getCacheManager().getCache("win").get(id).getObjectValue());
+			Map<String,Integer> m = (Map)cacheManager.getCacheManager().getCache("win").get(id).getObjectValue();
+			m.put(list.get(0).getName(), m.getOrDefault(list.get(0).getName(), 0) + 1);
+			System.out.println(m);
+		}
 	}
 
 	@Override
-	public ArrayList<ContentDto> statistic(int id ,String name) {
-		IContentDao dao = sqlSession.getMapper(IContentDao.class);
-		dao.update(id, name);
-
+	@Cacheable(value = "statistic", key = "#id")
+	public ArrayList<ContentDto> statistic(int id) {
 		return dao.list(id);
 	}
+	
+	@Override
+	@Cacheable(value = "win",key = "#id")
+	public Map<String,Integer> win(int id) {
+		System.out.println("asdf");
+		Map<String,Integer> map = new HashMap<>();
+		return map;
+	}
+	
 }

@@ -8,13 +8,13 @@
 <title>Insert title here</title>
 </head>
 <body>
-<a href="/worldCup">홈으로</a>
+<a href="/worldCup/">홈으로</a>
 내가 만든 월드컵
 
 	<c:forEach items="${list}" var="item">
 		${item.id }
 		<h3>${item.title }</h3>
-		<img src="${item.thumb_img }">
+		<img src="/${item.thumb_img }">
 		<form action="/worldCup/${item.title }" method="get">
 			<select name="round">
 				<option value="8">8</option>
