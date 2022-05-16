@@ -87,7 +87,7 @@ public class HomeController {
 	@RequestMapping("/statistic/{id}")
 	public String statistic(Model model, @PathVariable int id, String name, String WorldCup_title) {
 
-		ArrayList<ContentDto> list = service.statistic(id);
+		List<ContentDto> list = service.statistic(id);
 		model.addAttribute("list", list);
 		model.addAttribute("title", WorldCup_title);
 		model.addAttribute("name", name);
@@ -97,7 +97,7 @@ public class HomeController {
 
 	@RequestMapping("/board")
 	public String board(Model model, int id, String name) {
-		ArrayList<BoardDto> list = Bservice.list(id);
+		List<BoardDto> list = Bservice.list(id);
 		model.addAttribute("list", list);
 		model.addAttribute("id", id);
 		model.addAttribute("name", name);
@@ -105,10 +105,12 @@ public class HomeController {
 	}
 
 	@RequestMapping("/write")
-	public String board(Model model, int id, String name, String content, String writer) {
-		Bservice.write(id, name, content, writer);
-		model.addAttribute("name", name);
-		return "redirect:board?id=" + id;
+	public String board(Model model, BoardDto dto,int id) {
+		System.out.println(dto);
+		Bservice.write(dto,id);
+		//Bservice.write(id, name, content, writer);
+		//model.addAttribute("name", name);
+		return "redirect:board?id="+id;
 	}
 
 	@RequestMapping("/myWorldCup")

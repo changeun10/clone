@@ -21,7 +21,7 @@
 		<c:forEach items="${list}" var="item">
 		<tr>
 			<td>${item.name}</td>
-			<td><img src="/${item.image}" width="200",height="200"></td>
+			<td><img src="/${item.ZImage}" width="200",height="200"></td>
 			<td>${item.win}</td>
 		</tr>
 		</c:forEach>

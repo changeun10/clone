@@ -1,10 +1,11 @@
 package com.javalec.worldCup.service;
 
 import java.util.ArrayList;
+import java.util.List;
 
 import com.javalec.worldCup.dto.BoardDto;
 
 public interface BoardService {
-	public ArrayList<BoardDto> list(int worldCup_id);
-	public void write(int id,String name,String content,String writer);
+	public List<BoardDto> list(int worldCup_id);
+	public void write(BoardDto dto,int id );
 }

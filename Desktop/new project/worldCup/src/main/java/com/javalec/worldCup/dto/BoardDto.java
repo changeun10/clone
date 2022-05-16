@@ -2,60 +2,49 @@ package com.javalec.worldCup.dto;
 
 import java.util.Date;
 
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.FetchType;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
+
+import com.fasterxml.jackson.annotation.JsonBackReference;
+
+import lombok.Getter;
+import lombok.Setter;
+
+@Entity
+@Getter
+@Setter
 public class BoardDto {
+
+	@Id
+	@Column(name = "board_id")
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private int id;
 	private String name;
 	private String content;
 	private Date regDate;
 	private String writer;
-	private int worldCup_id;
 
-	public String getWriter() {
-		return writer;
+	@ManyToOne(fetch = FetchType.LAZY)
+	@JoinColumn(name = "worldCup_id")
+	@JsonBackReference
+	private WorldCupDto worldCupId;
+
+	public BoardDto() {
+		
 	}
-
-	public void setWriter(String writer) {
-		this.writer = writer;
-	}
-
-	public int getWorldCup_id() {
-		return worldCup_id;
-	}
-
-	public void setWorldCup_id(int worldCup_id) {
-		this.worldCup_id = worldCup_id;
-	}
-
-	public int getId() {
-		return id;
-	}
-
-	public void setId(int id) {
-		this.id = id;
-	}
-
-	public String getName() {
-		return name;
-	}
-
-	public void setName(String name) {
+	public BoardDto(String name, String content, Date regDate, String writer, WorldCupDto worldCupId) {
+		
 		this.name = name;
-	}
-
-	public String getContent() {
-		return content;
-	}
-
-	public void setContent(String content) {
 		this.content = content;
-	}
-
-	public Date getRegDate() {
-		return regDate;
-	}
-
-	public void setRegDate(Date regDate) {
 		this.regDate = regDate;
+		this.writer = writer;
+		this.worldCupId = worldCupId;
 	}
 
 }

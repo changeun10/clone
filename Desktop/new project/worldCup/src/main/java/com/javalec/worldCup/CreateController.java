@@ -31,7 +31,6 @@ public class CreateController {
 	@RequestMapping(method = RequestMethod.POST, value = "/create")
 	public String createWorldCup(String des, MultipartHttpServletRequest mRequest, String[] name, HttpSession session) {
 		String maker = (String) session.getAttribute("id");
-		System.out.println(maker);
 		CrService.createNewWroldCup(des, name, mRequest, maker);
 		
 		return "redirect:/worldCup/";

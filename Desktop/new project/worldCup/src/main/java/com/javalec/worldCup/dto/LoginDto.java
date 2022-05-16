@@ -1,6 +1,12 @@
 package com.javalec.worldCup.dto;
 
+import javax.persistence.Entity;
+import javax.persistence.Id;
+
+@Entity
 public class LoginDto {
+	
+	@Id
 	private String id;
 	private String pw;
 	private String name;
