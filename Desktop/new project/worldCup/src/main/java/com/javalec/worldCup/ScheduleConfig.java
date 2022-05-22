@@ -5,31 +5,39 @@ import java.util.List;
 import java.util.Map;
 import java.util.Objects;
 
+import javax.transaction.Transactional;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.cache.ehcache.EhCacheCacheManager;
 import org.springframework.scheduling.annotation.Scheduled;
 import org.springframework.stereotype.Component;
 
-import com.javalec.worldCup.dao.IContentDao;
+import com.javalec.worldCup.dao.ContentRepository;
+import com.javalec.worldCup.dto.ContentDto;
 
 @Component
 public class ScheduleConfig {
 	@Autowired
 	private EhCacheCacheManager cacheManager;
-	
-	@Autowired
-	private IContentDao dao;
 
-	@Scheduled(cron = "0 0/1 * * * *")
+	@Autowired
+	private ContentRepository repo;
+
+	@Scheduled(cron = "0/30 * * * * *")
+	@Transactional
 	public void testSchedule() {
+
 		List<Integer> keys = cacheManager.getCacheManager().getCache("win").getKeys();
-		System.out.println(keys);
+
 		if (keys.size() > 0) {
 			for (Integer x : keys) {
-				System.out.println(cacheManager.getCacheManager().getCache("win").get(x).getObjectValue());
 				Map<String, Integer> m = (Map) cacheManager.getCacheManager().getCache("win").get(x).getObjectValue();
+
 				for (String key : m.keySet()) {
-					dao.update(x, key,m.get(key));
+
+					ContentDto dto = repo.findByIdandName(x, key);
+					dto.setWin(dto.getWin() + m.get(key));
+
 				}
 			}
 		}

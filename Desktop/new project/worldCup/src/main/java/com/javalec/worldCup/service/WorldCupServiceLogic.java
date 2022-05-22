@@ -8,20 +8,14 @@ import java.util.Map;
 
 import javax.servlet.http.HttpSession;
 
-import org.apache.ibatis.session.SqlSession;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.cache.annotation.CacheEvict;
 import org.springframework.cache.annotation.Cacheable;
 import org.springframework.cache.ehcache.EhCacheCacheManager;
 import org.springframework.stereotype.Service;
 import org.springframework.ui.Model;
-import org.springframework.util.StopWatch;
 
-import com.javalec.worldCup.dao.ContentRepository;
-import com.javalec.worldCup.dao.IContentDao;
 import com.javalec.worldCup.dao.WorldCupRepository;
 import com.javalec.worldCup.dto.ContentDto;
-import com.javalec.worldCup.dto.ContentId;
 import com.javalec.worldCup.dto.WorldCupDto;
 
 @Service
@@ -57,14 +51,9 @@ public class WorldCupServiceLogic implements WorldCupService {
 			temp.add(dto);
 			session.setAttribute("temp", temp);
 		} else {
-			WorldCupDto kk = repo.findById(Long.valueOf(id));
+			//WorldCupDto kk = repo.findById(Long.valueOf(id));
+			WorldCupDto kk = load(id);
 			list = kk.getContents();
-			//list = repo.findAllById(id);
-			System.out.println(list.get(0).getWorldCupId().getId());
-			//repo.findById(contentId);
-			//list = repo.findAllByworldCupId(contentId);
-			System.out.println(list);
-			//list = dao.list(id);
 			Collections.shuffle(list);
 			list = list.subList(0, round);
 
@@ -95,31 +84,33 @@ public class WorldCupServiceLogic implements WorldCupService {
 		}
 
 		if (length == 1) {
-			//dao.update(id, list.get(0).getName());
 			
-			System.out.println(cacheManager.getCacheManager().getCache("win").get(id).getObjectKey());
-			System.out.println(cacheManager.getCacheManager().getCache("win").get(id).getObjectValue());
 			Map<String,Integer> m = (Map)cacheManager.getCacheManager().getCache("win").get(id).getObjectValue();
 			m.put(list.get(0).getName(), m.getOrDefault(list.get(0).getName(), 0) + 1);
-			System.out.println(m);
+
 		}
 	}
 
 	@Override
 	@Cacheable(value = "statistic", key = "#id")
 	public List<ContentDto> statistic(int id) {
-		System.out.println("fff");
 		WorldCupDto kk = repo.findById(Long.valueOf(id));
-		System.out.println(kk);
 		return kk.getContents();
 	}
 	
 	@Override
 	@Cacheable(value = "win",key = "#id")
 	public Map<String,Integer> win(int id) {
-		System.out.println("asdf");
 		Map<String,Integer> map = new HashMap<>();
 		return map;
+	}
+	
+	@Override
+	@Cacheable(value = "worldCup",key = "#id")
+	public WorldCupDto load(int id) {
+		System.out.println("캐시사용안함");
+		WorldCupDto wDto = repo.findById(Long.valueOf(id));
+		return wDto;
 	}
 	
 }

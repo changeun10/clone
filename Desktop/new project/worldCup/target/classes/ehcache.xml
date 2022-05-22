@@ -6,7 +6,10 @@
 	<cache name="statistic" maxElementsInMemory="1000"
 		eternal="false" overflowToDisk="false" timeToLiveSeconds="1000"
 		diskPersistent="false" memoryStoreEvictionPolicy="LRU" />
-	<cache name="win" maxElementsInMemory="1000"
-		eternal="false" overflowToDisk="false" timeToLiveSeconds="1000"
-		diskPersistent="false" memoryStoreEvictionPolicy="LRU" />
+	<cache name="win" maxElementsInMemory="1000" eternal="false"
+		overflowToDisk="false" timeToLiveSeconds="1000" diskPersistent="false"
+		memoryStoreEvictionPolicy="LRU" />
+	<cache name="worldCup" maxElementsInMemory="1000" eternal="false"
+		overflowToDisk="false" timeToLiveSeconds="1000" diskPersistent="false"
+		memoryStoreEvictionPolicy="LRU" />
 </ehcache>

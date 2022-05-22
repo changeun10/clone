@@ -12,7 +12,7 @@
 <body>
 	<a href="/worldCup/">홈으로</a>
 	<form action="/worldCup/write" method="post">
-		댓글작성<br><input type="hidden" name="id" value="${id }">
+		댓글작성<br><input type="hidden" name="wid" value="${id }">
 		<input type="hidden" name="name" value="${name }">
 		내가 뽑은 1등: ${name }
 		작성자 : <input type="text" name="writer" size="10">

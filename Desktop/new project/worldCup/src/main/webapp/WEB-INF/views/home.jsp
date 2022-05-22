@@ -22,7 +22,12 @@
         ${id }님 안녕하세요 <a href="logout">로그아웃</a>
 			<a href="myWorldCup">내가 만든 월드컵</a>
 		</c:otherwise>
-	</c:choose> 
+	</c:choose>
+	
+	<form action="/worldCup/search" method="get">
+		<input type ="text" name = "keyword">
+		<input type = "submit" value = "찾기">
+	</form> 
 	<br>
 	<c:forEach items="${list}" var="item">
 		<h3>${item.title }</h3>
