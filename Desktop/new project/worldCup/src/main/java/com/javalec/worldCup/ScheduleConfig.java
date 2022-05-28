@@ -14,6 +14,7 @@ import org.springframework.stereotype.Component;
 
 import com.javalec.worldCup.dao.ContentRepository;
 import com.javalec.worldCup.dto.ContentDto;
+import com.javalec.worldCup.model.Content;
 
 @Component
 public class ScheduleConfig {
@@ -21,7 +22,7 @@ public class ScheduleConfig {
 	private EhCacheCacheManager cacheManager;
 
 	@Autowired
-	private ContentRepository repo;
+	private ContentRepository cRepo;
 
 	@Scheduled(cron = "0/30 * * * * *")
 	@Transactional
@@ -35,7 +36,7 @@ public class ScheduleConfig {
 
 				for (String key : m.keySet()) {
 
-					ContentDto dto = repo.findByIdandName(x, key);
+					Content dto = cRepo.findByIdandName(x, key);
 					dto.setWin(dto.getWin() + m.get(key));
 
 				}

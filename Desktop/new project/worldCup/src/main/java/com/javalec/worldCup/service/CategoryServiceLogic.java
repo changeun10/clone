@@ -10,6 +10,7 @@ import org.springframework.stereotype.Service;
 
 import com.javalec.worldCup.dao.CategoryRepository;
 import com.javalec.worldCup.dto.WorldCupDto;
+import com.javalec.worldCup.model.WorldCup;
 
 @Service
 public class CategoryServiceLogic implements CategoryService {
@@ -18,7 +19,7 @@ public class CategoryServiceLogic implements CategoryService {
 	private CategoryRepository cRepo;
 
 	@Override
-	public List<WorldCupDto> list(int type) {
+	public List<WorldCup> list(int type) {
 		if (type == 0) {
 			return cRepo.findAllByOrderByHit();
 		} else {
@@ -29,13 +30,13 @@ public class CategoryServiceLogic implements CategoryService {
 
 	@Override
 	public void hit(int id) {
-		WorldCupDto dto = cRepo.findById(Long.valueOf(id));
+		WorldCup dto = cRepo.findById(Long.valueOf(id));
 		dto.setHit(dto.getHit() + 1);
 		cRepo.flush();
 	}
 
 	@Override
-	public ArrayList<WorldCupDto> myList(String maker) {
+	public ArrayList<WorldCup> myList(String maker) {
 		return cRepo.findAllByMaker(maker);
 
 	}

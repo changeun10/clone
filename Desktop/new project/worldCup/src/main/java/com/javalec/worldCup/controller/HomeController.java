@@ -1,4 +1,4 @@
-package com.javalec.worldCup;
+package com.javalec.worldCup.controller;
 
 import java.util.List;
 
@@ -15,6 +15,8 @@ import org.springframework.web.bind.annotation.RequestParam;
 import com.javalec.worldCup.dto.BoardDto;
 import com.javalec.worldCup.dto.ContentDto;
 import com.javalec.worldCup.dto.WorldCupDto;
+import com.javalec.worldCup.model.Board;
+import com.javalec.worldCup.model.Content;
 import com.javalec.worldCup.service.BoardService;
 import com.javalec.worldCup.service.CategoryService;
 import com.javalec.worldCup.service.SearchService;
@@ -49,7 +51,12 @@ public class HomeController {
 		}
 		service.load(id);
 		service.win(id);
-		service.WorldCup(model, dto, index, id, round, session);
+		
+		dto.setIndex(index);
+		dto.setRound(round);
+		dto.setId(id);
+		
+		service.WorldCup(model, dto, session);
 		model.addAttribute("WorldCup_title", WorldCup_title);
 		model.addAttribute("id", id);
 
@@ -69,7 +76,7 @@ public class HomeController {
 	@RequestMapping("/statistic/{id}")
 	public String statistic(Model model, @PathVariable int id, String name, String WorldCup_title) {
 
-		List<ContentDto> list = service.statistic(id);
+		List<Content> list = service.statistic(id);
 		model.addAttribute("list", list);
 		model.addAttribute("title", WorldCup_title);
 		model.addAttribute("name", name);
@@ -79,7 +86,7 @@ public class HomeController {
 
 	@RequestMapping("/board")
 	public String board(Model model, int id, String name) {
-		List<BoardDto> list = Bservice.list(id);
+		List<Board> list = Bservice.list(id);
 		model.addAttribute("list", list);
 		model.addAttribute("id", id);
 		model.addAttribute("name", name);
@@ -87,7 +94,7 @@ public class HomeController {
 	}
 
 	@RequestMapping("/write")
-	public String board(Model model, BoardDto dto, int wid) {
+	public String board(Model model, Board dto, int wid) {
 		
 		Bservice.write(dto, wid);
 		return "redirect:board?id=" + wid;

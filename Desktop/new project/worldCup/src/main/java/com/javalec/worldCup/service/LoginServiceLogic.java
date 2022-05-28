@@ -9,6 +9,7 @@ import org.springframework.stereotype.Service;
 import com.javalec.worldCup.dao.ILoginDao;
 import com.javalec.worldCup.dao.JoinRepository;
 import com.javalec.worldCup.dto.LoginDto;
+import com.javalec.worldCup.model.Member;
  
 @Service
 public class LoginServiceLogic implements LoginService {
@@ -17,8 +18,8 @@ public class LoginServiceLogic implements LoginService {
 	private JoinRepository repo;
 	
 	@Override
-	public LoginDto checkId(String id) {
-		Optional<LoginDto> dto = repo.findById(id);
+	public Member checkId(String id) {
+		Optional<Member> dto = repo.findById(id);
 		if (dto.isPresent()) {
 			return dto.get();
 		}	
@@ -26,7 +27,7 @@ public class LoginServiceLogic implements LoginService {
 	} 
 
 	@Override
-	public void join(LoginDto dto) {
+	public void join(Member dto) {
 		/*
 		 * String id = dto.getId(); String pw = dto.getPw(); String name =
 		 * dto.getName(); dao.join(id, pw, name);
@@ -37,7 +38,7 @@ public class LoginServiceLogic implements LoginService {
 
 	@Override
 	public boolean checkLogin(String id,String pw) {
-		Optional<LoginDto> dto = repo.findById(id);
+		Optional<Member> dto = repo.findById(id);
 
 		if(dto.isPresent()) {
 			if (dto.get().getPw().equals(pw)) {

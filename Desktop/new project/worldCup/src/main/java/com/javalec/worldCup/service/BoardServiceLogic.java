@@ -9,6 +9,8 @@ import com.javalec.worldCup.dao.BoardRepository;
 import com.javalec.worldCup.dao.WorldCupRepository;
 import com.javalec.worldCup.dto.BoardDto;
 import com.javalec.worldCup.dto.WorldCupDto;
+import com.javalec.worldCup.model.Board;
+import com.javalec.worldCup.model.WorldCup;
 
 @Service
 public class BoardServiceLogic implements BoardService {
@@ -20,15 +22,15 @@ public class BoardServiceLogic implements BoardService {
 	private BoardRepository bRepo;
 
 	@Override
-	public List<BoardDto> list(int worldCup_id) {
-		WorldCupDto wDto = wRepo.findById(Long.valueOf(worldCup_id));
+	public List<Board> list(int worldCup_id) {
+		WorldCup wDto = wRepo.findById(Long.valueOf(worldCup_id));
 
 		return wDto.getBoards();
 	}
 
 	@Override
-	public void write(BoardDto dto, int id) {
-		WorldCupDto wDto = wRepo.findById(Long.valueOf(id));
+	public void write(Board dto, int id) {
+		WorldCup wDto = wRepo.findById(Long.valueOf(id));
 		dto.setWorldCupId(wDto);
 		bRepo.save(dto);
 

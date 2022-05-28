@@ -1,4 +1,4 @@
-package com.javalec.worldCup;
+package com.javalec.worldCup.controller;
 
 import javax.servlet.http.HttpSession;
 

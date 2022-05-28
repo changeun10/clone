@@ -1,4 +1,4 @@
-package com.javalec.worldCup.dto;
+package com.javalec.worldCup.model;
 
 import java.io.Serializable;
 

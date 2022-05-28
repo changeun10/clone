@@ -17,6 +17,8 @@ import org.springframework.ui.Model;
 import com.javalec.worldCup.dao.WorldCupRepository;
 import com.javalec.worldCup.dto.ContentDto;
 import com.javalec.worldCup.dto.WorldCupDto;
+import com.javalec.worldCup.model.Content;
+import com.javalec.worldCup.model.WorldCup;
 
 @Service
 public class WorldCupServiceLogic implements WorldCupService {
@@ -28,10 +30,13 @@ public class WorldCupServiceLogic implements WorldCupService {
 	private WorldCupRepository repo;
 
 	@Override
-	public void WorldCup(Model model, ContentDto dto, int index, int id, int round, HttpSession session) {
+	public void WorldCup(Model model, ContentDto dto, HttpSession session) {
 
 		int length;
-
+		int index = dto.getIndex();
+		int round = dto.getRound();
+		int id = dto.getId();
+		
 		List<ContentDto> list;
 		ArrayList<ContentDto> temp;
 
@@ -52,8 +57,8 @@ public class WorldCupServiceLogic implements WorldCupService {
 			session.setAttribute("temp", temp);
 		} else {
 			//WorldCupDto kk = repo.findById(Long.valueOf(id));
-			WorldCupDto kk = load(id);
-			list = kk.getContents();
+			WorldCup kk = load(id);
+			//list = kk.getContents();
 			Collections.shuffle(list);
 			list = list.subList(0, round);
 
@@ -93,9 +98,9 @@ public class WorldCupServiceLogic implements WorldCupService {
 
 	@Override
 	@Cacheable(value = "statistic", key = "#id")
-	public List<ContentDto> statistic(int id) {
-		WorldCupDto kk = repo.findById(Long.valueOf(id));
-		return kk.getContents();
+	public List<Content> statistic(int id) {
+		WorldCup w = repo.findById(Long.valueOf(id));
+		return w.getContents();
 	}
 	
 	@Override
@@ -107,10 +112,9 @@ public class WorldCupServiceLogic implements WorldCupService {
 	
 	@Override
 	@Cacheable(value = "worldCup",key = "#id")
-	public WorldCupDto load(int id) {
-		System.out.println("캐시사용안함");
-		WorldCupDto wDto = repo.findById(Long.valueOf(id));
-		return wDto;
+	public WorldCup load(int id) {
+		WorldCup w = repo.findById(Long.valueOf(id));
+		return w;
 	}
 	
 }

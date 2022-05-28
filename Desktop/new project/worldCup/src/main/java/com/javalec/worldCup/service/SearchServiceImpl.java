@@ -6,7 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.javalec.worldCup.dao.WorldCupRepository;
-import com.javalec.worldCup.dto.WorldCupDto;
+import com.javalec.worldCup.model.WorldCup;
 
 @Service
 public class SearchServiceImpl implements SearchService {
@@ -15,7 +15,7 @@ public class SearchServiceImpl implements SearchService {
 	private WorldCupRepository wRepo;
 
 	@Override
-	public List<WorldCupDto> search(String keyword) {
+	public List<WorldCup> search(String keyword) {
 
 		return wRepo.findAllByTitleContaining(keyword);
 	}

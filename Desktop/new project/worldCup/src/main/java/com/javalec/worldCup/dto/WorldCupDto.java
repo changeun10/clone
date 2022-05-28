@@ -22,7 +22,7 @@ import lombok.Data;
 import lombok.Getter;
 import lombok.Setter;
 
-@Entity
+
 @Setter
 @Getter
 @EntityListeners(AuditingEntityListener.class)

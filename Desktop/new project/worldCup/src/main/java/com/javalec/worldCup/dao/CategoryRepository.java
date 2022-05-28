@@ -5,18 +5,19 @@ import java.util.List;
 
 import org.springframework.data.jpa.repository.JpaRepository;
 import com.javalec.worldCup.dto.WorldCupDto;
+import com.javalec.worldCup.model.WorldCup;
 
-public interface CategoryRepository extends JpaRepository<WorldCupDto, Integer>{
+public interface CategoryRepository extends JpaRepository<WorldCup, Integer>{
 
-	ArrayList<WorldCupDto> findAllByMaker(String maker);
+	ArrayList<WorldCup> findAllByMaker(String maker);
 
 	void deleteById(Long id);
 
-	WorldCupDto findById(Long id);
+	WorldCup findById(Long id);
 
-	List<WorldCupDto> findAllByOrderByHit();
+	List<WorldCup> findAllByOrderByHit();
 
-	List<WorldCupDto> findAllByOrderByRegDate();
+	List<WorldCup> findAllByOrderByRegDate();
 
 
 }

@@ -15,7 +15,7 @@
 	
 	썸네일로 사용할 사진을 선택해주세요 : <input type="file" id="thumb" ><br>
 	
-	제목:<input type="text" name="des"><br>
+	제목:<input type="text" name="title"><br>
 	<input multiple="multiple" type="file" name="file" id="image" />
 	<div id="image_container"></div>
 	<button type="button" id='btnUpload'>만들기</button>

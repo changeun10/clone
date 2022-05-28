@@ -7,19 +7,17 @@ import java.util.List;
 
 import javax.servlet.ServletContext;
 
-import org.apache.ibatis.session.SqlSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
- 
 import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.multipart.MultipartHttpServletRequest;
 
 import com.javalec.worldCup.dao.ContentRepository;
-import com.javalec.worldCup.dao.ICreateDao;
 import com.javalec.worldCup.dao.WorldCupRepository;
-import com.javalec.worldCup.dto.BoardDto;
-import com.javalec.worldCup.dto.ContentDto;
-import com.javalec.worldCup.dto.WorldCupDto;
+import com.javalec.worldCup.dto.NewWorldCupDto;
+import com.javalec.worldCup.model.Board;
+import com.javalec.worldCup.model.Content;
+import com.javalec.worldCup.model.WorldCup;
 
 @Service
 public class CreateServiceLogic implements CreateService {
@@ -28,45 +26,34 @@ public class CreateServiceLogic implements CreateService {
 	private ServletContext servletContext;
 
 	@Autowired
-	private WorldCupRepository repo;
+	private WorldCupRepository wRepo;
 	
 	@Autowired
-	private ContentRepository repo1;
+	private ContentRepository cRepo;
 	
 	@Override
-	public void createNewWroldCup(String title, String[] name,
-			MultipartHttpServletRequest mRequest,String maker) {
+	public void createNewWroldCup(String title, String[] name, String maker,MultipartHttpServletRequest mRequest) {
+		
 		
 		List<MultipartFile> fileList = mRequest.getFiles("image");
 		MultipartFile file = mRequest.getFile("thumb");
 		String thumb_img = file.getOriginalFilename();
+		System.out.println("ttitle"+title);
+		
+		WorldCup k = new WorldCup("resources/thumb/"+thumb_img,title,0,maker,new ArrayList<Content>(), new ArrayList<Board>());
 		
 		
-		//int a = dao.createWorldCup("resources/thumb/"+thumb_img, title, maker);
-		
-		WorldCupDto k = new WorldCupDto("resources/thumb/"+thumb_img,title,0,maker,new ArrayList<ContentDto>(), new ArrayList<BoardDto>());
-		//public WorldCupDto(String thumb_img, String title, int hit, String maker, List<ContentDto> contents) {
-		
-		repo.save(k);
-		ArrayList<ContentDto> list = new ArrayList<ContentDto>();
+		wRepo.save(k);
+	
 		for(int i=0;i<name.length;i++) {
 			String image = fileList.get(i).getOriginalFilename();
-			System.out.println(image);
-			ContentDto dto = new ContentDto(k,"resources/"+title+"/"+image,name[i],0);
-			System.out.println(dto);
-			/*
-			 * String nam = name[i]; String image = fileList.get(i).getOriginalFilename();
-			 * ContentDto dto = new ContentDto(); dto.setName(nam);
-			 * dto.setZImage("resources/"+title+"/"+image); list.add(dto);
-			 */
-			repo1.save(dto);
+			Content content = new Content(k,"resources/"+title+"/"+image,name[i],0);
+		
+			cRepo.save(content);
 		}
-		
-		
-		//dao.insertContent(list);
 	
 		String path = servletContext.getRealPath("resources");
-		
+		System.out.println(path);
 		try {
 			file.transferTo(new File(path+"/thumb", thumb_img));
 		} catch (IllegalStateException e1) {
@@ -75,7 +62,7 @@ public class CreateServiceLogic implements CreateService {
 			e1.printStackTrace();
 		}
 		File Folder = new File(path, title);
-		
+		System.out.println(Folder);
 		if (!Folder.exists()) {
 			try {
 				Folder.mkdir();
@@ -85,7 +72,7 @@ public class CreateServiceLogic implements CreateService {
 		} else {
 		}
 		path = path +"/"+title;
-		
+		System.out.println(path);
 		for (MultipartFile mf : fileList) {
 			String originFileName = mf.getOriginalFilename(); //
 			File saveFile = new File(path, originFileName);

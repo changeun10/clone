@@ -1,4 +1,4 @@
-package com.javalec.worldCup;
+package com.javalec.worldCup.controller;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -7,6 +7,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.javalec.worldCup.dto.LoginDto;
+import com.javalec.worldCup.model.Member;
 import com.javalec.worldCup.service.LoginService;
 
 @Controller
@@ -22,7 +23,7 @@ public class JoinController {
 	}
 
 	@RequestMapping(method = RequestMethod.POST, value = "/join")
-	public String doJoin(LoginDto dto) {
+	public String doJoin(Member dto) {
 		Lservice.join(dto);
 		return "login";
 	}
@@ -30,7 +31,7 @@ public class JoinController {
 	@ResponseBody
 	@RequestMapping("/checkId")
 	public String checkId(String id) {
-		LoginDto dto = Lservice.checkId(id);
+		Member dto = Lservice.checkId(id);
 		if (dto == null) {
 			return "ok";
 		} else {
