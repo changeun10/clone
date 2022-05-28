@@ -1,0 +1,9 @@
+Manifest-Version: 1.0
+Built-By: user
+Build-Jdk: 17.0.2
+Implementation-Title: worldCup
+Implementation-Version: 1.0.0-SNAPSHOT
+Implementation-Vendor-Id: com.javalec
+Implementation-URL: https://spring.io/projects/spring-boot/worldCup
+Created-By: Maven Integration for Eclipse
+

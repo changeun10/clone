@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+    PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+    "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.javalec.worldCup.dao.ICreateDao">
+   	<insert id="createWorldCup">
+   		insert into WorldCup values (worldCup_id_seq.nextval,#{param1},#{param2},0,sysdate,#{param3})
+   		
+   	</insert>
+   	
+   	<update id="insertContent" parameterType="java.util.List">
+   		<selectKey keyProperty="id" order="BEFORE" resultType="int">
+   			select last_number from user_sequences where sequence_name = 'WORLDCUP_ID_SEQ'
+   		</selectKey>
+   	
+   	insert all
+		<foreach collection="list" item="item">
+			into content values (#{id}-1,#{item.image},#{item.name},0)
+		</foreach>
+		select * from dual
+   	</update>
+ </mapper>
